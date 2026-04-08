@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+# Update the sitemap URL after connecting your custom domain
+Sitemap: https://example.com/sitemap.xml
