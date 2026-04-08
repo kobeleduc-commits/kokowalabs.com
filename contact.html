@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – Premium Consulting</title>
+  <meta name="description" content="Get in touch with our consulting team. We'd love to hear about your goals and discuss how we can help." />
+  <meta property="og:title" content="Contact Us – Premium Consulting" />
+  <meta property="og:description" content="Get in touch with our consulting team. We'd love to hear about your goals and discuss how we can help." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/contact.html" />
+  <meta property="og:image" content="https://example.com/img/og-image.jpg" />
+  <link rel="canonical" href="https://example.com/contact.html" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="logo">Your Brand</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section style="background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%); padding: 4rem 0; text-align: center;">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p class="section-subtitle">We’d love to hear about your vision and explore how we can help</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="contact-info">
+        <div>
+          <strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a>
+        </div>
+        <div>
+          <strong>Phone:</strong> <a href="tel:+1234567890">+1&nbsp;234&nbsp;567&nbsp;890</a>
+        </div>
+        <div>
+          <strong>Office:</strong> Avenue des Exemples 10, 1000 Brussels, Belgium
+        </div>
+      </div>
+      <div class="contact-form">
+        <!-- Replace the Formspree URL with your own form ID or integrate a different form provider -->
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+
+          <button type="submit" class="btn" style="border: none;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Your Brand. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
