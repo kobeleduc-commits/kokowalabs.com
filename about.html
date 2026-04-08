@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – Premium Consulting</title>
+  <meta name="description" content="Learn about our mission, values, and the team behind Premium Consulting." />
+  <meta property="og:title" content="About Us – Premium Consulting" />
+  <meta property="og:description" content="Learn about our mission, values, and the team behind Premium Consulting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/about.html" />
+  <meta property="og:image" content="https://example.com/img/og-image.jpg" />
+  <link rel="canonical" href="https://example.com/about.html" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="logo">Your Brand</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section style="background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%); padding: 4rem 0; text-align: center;">
+    <div class="container">
+      <h1>About Our Firm</h1>
+      <p class="section-subtitle">Who we are and why we exist</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container about-intro">
+      <img src="img/about-placeholder.jpg" alt="Team working together" />
+      <div class="text">
+        <h2>Our Story</h2>
+        <p>
+          Founded by seasoned strategists and designers, our consultancy is built on the belief that clarity and execution are the cornerstones of success. We partner with clients across industries to define their vision, translate it into actionable strategies, and deliver measurable outcomes.
+        </p>
+        <p>
+          Over the years, we have helped startups launch, organisations scale, and enterprises transform. Our multidisciplinary team brings together expertise in strategy, branding, digital, and operations, ensuring holistic solutions tailored to each client’s unique challenges.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Our Values</h2>
+      <p class="section-subtitle">Principles that guide every engagement</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20 10 10 0 010-20zm1.54 6.15l3.38 3.39-1.42 1.42L12 10.58l-3.5 3.5-1.42-1.42 3.39-3.38a1 1 0 011.42 0z"/></svg>
+          <div class="service-title">Integrity</div>
+          <div class="service-description">We operate with honesty and transparency in all interactions.</div>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10zm1-14h3v2h-2v2h-2v-4zm-2 8H8v-2h2v-2h2v4z"/></svg>
+          <div class="service-title">Excellence</div>
+          <div class="service-description">We pursue excellence through continuous improvement and attention to detail.</div>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20 10 10 0 010-20zm4.24 7.24l-4.95 4.95L7.76 11.7l1.41-1.42 2.12 2.13 3.54-3.54 1.41 1.41z"/></svg>
+          <div class="service-title">Impact</div>
+          <div class="service-description">We are driven to deliver meaningful results that create lasting change.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="text-align: center;">
+      <h2>Meet the Team</h2>
+      <p class="section-subtitle">A diverse group of experts dedicated to your success</p>
+      <p style="max-width: 700px; margin: 0 auto; color: var(--color-muted);">
+        Our consultants come from a range of backgrounds—including strategy consulting, design, digital product development, and operations management. Together, we bring a holistic perspective and the agility to tackle complex challenges.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Your Brand. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
