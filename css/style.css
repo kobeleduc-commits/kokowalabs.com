@@ -10,9 +10,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-primary: #1F2937;    /* dark blue for headings and navigation */
-  --color-secondary: #2563EB;  /* bright accent for buttons and links */
-  --color-background: #F9FAFB; /* light background for a clean canvas */
+  /* Brand palette inspired by Kokowa Field Labs.
+     Primary colour anchors the dark blue used in the logo.
+     Secondary colour provides a warm accent derived from the flame mark.
+     Background adopts a soft beige tone to echo the light backdrop of the brand assets. */
+  --color-primary: #233E5B;    /* deep navy for headings and navigation */
+  --color-secondary: #C96A6A;  /* warm coral accent for buttons and highlights */
+  --color-background: #F7F4F3; /* light beige background for a premium feel */
   --color-text: #374151;       /* dark grey for body copy */
   --color-muted: #6B7280;      /* muted grey for secondary text */
   --font-base: 'Inter', sans-serif;
@@ -73,9 +77,27 @@ header {
 }
 
 .nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--color-primary);
+}
+
+/* Logo image displayed in navigation */
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Subhero text style used on home page hero */
+.subhero {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
 }
 
 .nav ul {
