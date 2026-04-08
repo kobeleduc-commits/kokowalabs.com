@@ -1,0 +1,278 @@
+/*
+ * Global stylesheet for the premium business website.
+ *
+ * The design uses a neutral colour palette and generous white space to
+ * communicate sophistication and trust. The typography favours a clean
+ * sans‑serif font and consistent hierarchy across headings and paragraphs.
+ */
+
+/* Import the Inter font with fallback fonts for performance. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #1F2937;    /* dark blue for headings and navigation */
+  --color-secondary: #2563EB;  /* bright accent for buttons and links */
+  --color-background: #F9FAFB; /* light background for a clean canvas */
+  --color-text: #374151;       /* dark grey for body copy */
+  --color-muted: #6B7280;      /* muted grey for secondary text */
+  --font-base: 'Inter', sans-serif;
+  --max-width: 1200px;
+}
+
+/* Reset some default browser styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-secondary);
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: darken(var(--color-secondary), 10%);
+}
+
+/* Container utility class to centre content and limit width */
+.container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Header and navigation styles */
+header {
+  background-color: var(--color-background);
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.nav .logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav li a {
+  font-weight: 500;
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+.nav li a:hover {
+  color: var(--color-secondary);
+}
+
+/* Hero section */
+.hero {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+.btn:hover {
+  background-color: #1d4ed8; /* slightly darker blue */
+}
+
+/* Sections */
+section {
+  padding: 4rem 0;
+}
+
+section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+section p.section-subtitle {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* Services cards */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+.service-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  fill: var(--color-secondary);
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.service-description {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+/* About page specific */
+.about-intro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-intro img {
+  flex: 1 1 40%;
+  border-radius: 0.5rem;
+}
+
+.about-intro .text {
+  flex: 1 1 50%;
+}
+.about-intro h2 {
+  text-align: left;
+}
+
+/* Contact page */
+.contact-info {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-background);
+  border-top: 1px solid #e5e7eb;
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+footer .footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+footer .footer-links a {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+footer p {
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .about-intro {
+    flex-direction: column;
+  }
+  .nav ul {
+    gap: 1rem;
+  }
+}
