@@ -353,3 +353,26 @@ footer p {
     font-size: 0.95rem;
   }
 }
+
+  /* Mobile header adjustments
+   * Expand the brand logo to span the entire width of the header on extra-small
+   * screens. Center the logo horizontally and stack the navigation items below it.
+   * Increasing the font size of the brand name ensures the full name remains
+   * legible on narrow viewports.
+   */
+  .nav .logo {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  .logo-img {
+    max-width: 100%;
+    height: auto;
+  }
+  .logo-text {
+    font-size: 1.4rem;
+  }
+  .nav ul {
+    width: 100%;
+    align-items: center;
+  }
