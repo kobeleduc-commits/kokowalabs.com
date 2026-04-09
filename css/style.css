@@ -1,3 +1,4 @@
+
 /*
  * Global stylesheet for the premium business website.
  *
@@ -354,25 +355,31 @@ footer p {
   }
 }
 
-  /* Mobile header adjustments
-   * Expand the brand logo to span the entire width of the header on extra-small
-   * screens. Center the logo horizontally and stack the navigation items below it.
-   * Increasing the font size of the brand name ensures the full name remains
-   * legible on narrow viewports.
+    /*
+   * Mobile navigation adjustments
+   * Keep the header height close to the natural logo height on very small screens.
+   * We stack the elements vertically but avoid expanding the logo to full width
+   * or increasing the font size excessively. This preserves a normal‑sized header
+   * while maintaining readability and navigation accessibility.
    */
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
   .nav .logo {
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 0.5rem;
+    width: auto;
+    margin-bottom: 0.25rem;
+    justify-content: flex-start;
   }
   .logo-img {
-    max-width: 100%;
-    height: auto;
+    height: 48px;
+    max-width: none;
   }
   .logo-text {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   .nav ul {
-    width: 100%;
-    align-items: center;
+    width: auto;
+    align-items: flex-start;
   }
