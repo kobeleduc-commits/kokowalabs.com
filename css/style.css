@@ -86,9 +86,15 @@ header {
 }
 
 /* Logo image displayed in navigation */
+/*
+ * Navigation logo styling
+ * On larger screens we want the horizontal Kokowa logo to be clearly legible,
+ * so we bump its height up and allow it to take up more horizontal space.
+ * The width auto ensures the image scales proportionally. The nav
+ * container will flex and wrap the remaining items accordingly.
+ */
 .logo-img {
-  /* Increase default height to display the new horizontal logo more prominently */
-  height: 60px;
+  height: 80px;
   width: auto;
   display: inline-block;
   vertical-align: middle;
@@ -118,28 +124,42 @@ header {
 
 /* Hero section */
 .hero {
-  padding: 4rem 0;
+  /* Reduce vertical padding to create a shorter banner.
+     The hero should occupy less vertical space while still feeling spacious.
+     This change aligns the hero height with the provided design reference. */
+  padding: 3rem 0;
   background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%);
   text-align: center;
 }
 
 .hero h1 {
   /* Slightly reduce hero headline size to harmonise with tagline */
-  font-size: 2.25rem;
+  /* Moderate the headline size so it does not overpower the tagline */
+  /* Adjust the headline size slightly so it doesn't overpower the tagline.
+     This value keeps the heading prominent but balances better with the subtitle. */
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1.125rem;
+  /* Reduce the subheading size to better balance with the headline */
+  /* Increase the paragraph size modestly for improved readability and to harmonise
+     with the larger tagline size below. */
+  font-size: 1.1rem;
   color: var(--color-muted);
   margin-bottom: 2rem;
 }
 
 /* Increase font size for the hero subheading to create a better balance with the main headline */
 .hero .section-subtitle {
-  font-size: 1.25rem;
+  /* Bring the hero subtitle closer in size to the headline so the two lines
+     feel harmonious. A slightly smaller size maintains hierarchy without
+     overpowering the main headline. */
+  /* Increase the tagline (subtitle) size relative to the headline so the two lines
+     feel more balanced. */
+  font-size: 1.3rem;
 }
 
 .btn {
@@ -169,7 +189,8 @@ section h2 {
 }
 
 section p.section-subtitle {
-  font-size: 1rem;
+  /* Slightly enlarge the subhero text to maintain hierarchy with the updated tagline. */
+  font-size: 1.1rem;
   color: var(--color-muted);
   margin-bottom: 3rem;
   text-align: center;
