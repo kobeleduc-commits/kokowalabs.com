@@ -94,8 +94,11 @@ header {
  * container will flex and wrap the remaining items accordingly.
  */
 .logo-img {
-  /* Enlarge the logo by approximately 30% to make the header logo more prominent. */
-  height: 104px;
+/* Enlarge the logo by approximately another 30% to make the header logo more prominent.
+   Previously we increased the height to 104 px (around a 30 % bump from 80 px).
+   User feedback calls for a further 30 % increase, so we set the height to
+   roughly 135 px. The width remains auto so the aspect ratio is preserved. */
+  height: 135px;
   width: auto;
   display: inline-block;
   vertical-align: middle;
@@ -411,7 +414,9 @@ footer p {
     justify-content: flex-start;
   }
   .logo-img {
-    height: 48px;
+    /* Increase logo height on small screens by roughly 30 %. Previously 48 px,
+       now bumped to 62 px to maintain legibility while keeping the header compact. */
+    height: 62px;
     max-width: none;
   }
   .logo-text {
