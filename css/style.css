@@ -243,8 +243,24 @@ header {
 }
 
 /* Sections */
+/*
+ * Section base styling
+ * We add a scroll-margin-top to each section so that anchored navigation
+ * offsets the height of the sticky header. Without this, clicking a menu
+ * link results in the section title being hidden behind the fixed header.
+ */
 section {
   padding: 4rem 0;
+  /* Offset to account for the sticky header (approx 7rem = ~112px). This ensures
+     that anchored sections are fully visible when navigated via the menu. */
+  scroll-margin-top: 7rem;
+}
+
+@media (max-width: 768px) {
+  section {
+    /* On smaller screens the header is shorter, so we reduce the margin. */
+    scroll-margin-top: 6rem;
+  }
 }
 
 section h2 {
@@ -415,6 +431,32 @@ footer p {
   .nav ul {
     gap: 1rem;
   }
+}
+
+/* Gallery grid for Experience & Training section */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  display: block;
+}
+
+.gallery-item iframe {
+  width: 100%;
+  height: 320px;
+  border: none;
+  border-radius: 0.5rem;
 }
 
 /*
