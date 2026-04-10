@@ -78,8 +78,9 @@ header {
 
 .nav .logo {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--color-primary);
@@ -157,6 +158,25 @@ header {
   color: var(--color-secondary);
 }
 
+/* Descriptor text under the logo image. This small line sits beneath the horizontal logo and provides context without overwhelming the header. */
+.logo-descriptor {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+}
+
+/* Intro line styling placed at the top of the hero section. It provides a succinct mission statement and should harmonise with the rest of the hero copy. */
+.intro-line {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
 /* Hero section */
 .hero {
   /* Reduce vertical padding to create a shorter banner.
@@ -208,6 +228,18 @@ header {
 }
 .btn:hover {
   background-color: #1d4ed8; /* slightly darker blue */
+}
+
+/* Container for multiple hero buttons. Ensures the calls‑to‑action are
+   displayed side by side with consistent spacing and wrap gracefully on
+   narrow viewports. */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
 /* Sections */
