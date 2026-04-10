@@ -94,7 +94,8 @@ header {
  * container will flex and wrap the remaining items accordingly.
  */
 .logo-img {
-  height: 80px;
+  /* Enlarge the logo by approximately 30% to make the header logo more prominent. */
+  height: 104px;
   width: auto;
   display: inline-block;
   vertical-align: middle;
