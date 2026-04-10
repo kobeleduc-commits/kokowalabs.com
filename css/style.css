@@ -111,6 +111,37 @@ header {
   margin-bottom: 2rem;
 }
 
+/* Tagline style
+   The tagline emphasises the competitive edge and should complement the
+   hero heading without overpowering it. We set a semi‑bold weight and
+   primary colour for contrast, with responsive font sizing for smaller
+   viewports. */
+/*
+ * Tagline styling
+ *
+ * The tagline communicates your unique competitive edge. To position it
+ * harmoniously beneath the hero subhead we set a semi–bold weight and
+ * adjust the font size relative to the heading and subtitle. A subtle
+ * letter spacing and increased top margin give the line breathing room.
+ * Responsive rules ensure the tagline scales appropriately on smaller
+ * viewports.
+ */
+.tagline {
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .tagline {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+}
+
 .nav ul {
   list-style: none;
   display: flex;
