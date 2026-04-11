@@ -84,6 +84,48 @@
   }
 }
 
+/* Kobe section styling */
+.kobe-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+.kobe-text {
+  flex: 1;
+}
+.kobe-image img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.social-links {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+.social-links a {
+  color: var(--color-primary);
+  margin-right: 1rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-primary);
+}
+.social-links a:last-child {
+  margin-right: 0;
+}
+.social-links a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .kobe-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .kobe-image img {
+    max-width: 100%;
+  }
+}
+
 /* ------------------------------------------------------------------- */
 /* New styles for the redesigned Kokowa Labs homepage                   */
 /* ------------------------------------------------------------------- */
