@@ -10,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Brand palette inspired by Kokowa Field Labs.
+/* Brand palette inspired by Kokowa Labs.
      Primary colour anchors the dark blue used in the logo.
      Secondary colour provides a warm accent derived from the flame mark.
      Background adopts a soft beige tone to echo the light backdrop of the brand assets. */
@@ -21,6 +21,365 @@
   --color-muted: #6B7280;      /* muted grey for secondary text */
   --font-base: 'Inter', sans-serif;
   --max-width: 1200px;
+}
+
+/* Testimonials and proof section styles */
+.testimonials-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.testimonial {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.testimonial h3 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+.testimonial p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.value-list {
+  list-style: none;
+  margin: 2rem 0;
+  padding-left: 0;
+}
+.value-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.value-list li::before {
+  content: '\\2713';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-secondary);
+}
+.cta-line {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--color-primary);
+}
+
+/* Responsive grid for testimonials */
+@media (min-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------------------------------------------- */
+/* New styles for the redesigned Kokowa Labs homepage                   */
+/* ------------------------------------------------------------------- */
+
+/* Subheadline in hero section */
+.subheadline {
+  font-size: 1.2rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+/* Authority ribbon under hero */
+.authority {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+/* CTA group for hero and final CTA */
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Primary and secondary buttons */
+.btn-primary {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background-color: #b85858;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Trust strip */
+.trust-strip {
+  background-color: #eef2f7;
+  padding: 1rem 0;
+}
+.trust-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+.trust-list li::before {
+  content: "\2022";
+  margin-right: 0.5rem;
+  color: var(--color-secondary);
+}
+
+/* Problem section */
+.problem .pain-cards {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .problem .pain-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .problem .pain-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.pain-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.pain-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+.pain-card p {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* Audience and approach sections remain simple; rely on global section styles */
+
+/* Services / engagements cards */
+.services .service-cards {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .services .service-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .services .service-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.service-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.service-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+.service-card .btn-link {
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+.service-card .btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Why section */
+.why-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 2rem 0;
+  color: var(--color-text);
+}
+.why-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.why-list li::before {
+  content: "\2714";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-secondary);
+}
+.kobe {
+  margin-top: 3rem;
+}
+
+/* Testimonials / proof */
+.testimonials .testimonial-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .testimonials .testimonial-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .testimonials .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.testimonials .testimonial {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.testimonials .testimonial h3 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+.testimonials .testimonial p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.value-list {
+  list-style: none;
+  margin: 2rem 0;
+  padding-left: 0;
+}
+.value-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.value-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-secondary);
+}
+
+/* Capabilities grid */
+.capabilities .capability-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .capabilities .capability-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .capabilities .capability-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.capabilities .capability h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+.capabilities .capability ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.capabilities .capability li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+.capabilities .capability li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-secondary);
+}
+
+/* Final CTA section */
+.final-cta {
+  background-color: #eef2f7;
+  text-align: center;
+}
+.final-cta h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+.final-cta p {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Footer navigation */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.footer-nav a {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+.footer-nav a:hover {
+  color: var(--color-secondary);
 }
 
 /* Reset some default browser styles */
@@ -159,11 +518,16 @@ header {
 }
 
 /* Descriptor text under the logo image. This small line sits beneath the horizontal logo and provides context without overwhelming the header. */
+/*
+ * Descriptor beneath the Kokowa Labs logo.
+ * We lighten the colour so it doesn’t compete with the hero copy. The small
+ * size and muted tone signal a subtitle rather than a second headline.
+ */
 .logo-descriptor {
   display: block;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-muted);
   letter-spacing: 0.02em;
   margin-top: 0.25rem;
 }
@@ -554,4 +918,19 @@ footer p {
     align-items: center;
     justify-content: center;
   }
+}
+
+/* Testimonial widget container
+   Adds spacing above the embed so it doesn't butt up against other content. */
+.testimonial-widget {
+  margin-top: 2rem;
+}
+
+/* Ensure the embedded testimonial iframe fills the container width and
+   maintains a reasonable height. The iFrameResizer script will adjust the
+   height automatically as testimonials load. */
+.testimonial-widget iframe {
+  width: 100%;
+  border: none;
+  min-height: 400px;
 }
