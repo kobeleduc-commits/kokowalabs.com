@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply – Kokowa Labs</title>
+  <meta name="description" content="Apply for a strategic diagnostic with Kokowa Labs. Our selective multi‑step form is designed to qualify serious founders seeking sharper positioning, sequencing and commercial clarity." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    /* Inline styles for application form */
+    .apply-section {
+      padding: 4rem 0;
+    }
+    .apply-section h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: var(--color-primary);
+    }
+    .apply-section p.intro {
+      text-align: center;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--color-text);
+    }
+    form#application-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 2rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    .form-step {
+      display: none;
+    }
+    .form-step.active {
+      display: block;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      font-size: 1rem;
+    }
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .checkbox {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .checkbox input {
+      margin-right: 0.5rem;
+    }
+    .form-navigation {
+      display: flex;
+      justify-content: space-between;
+    }
+    .form-navigation button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn-next {
+      background-color: var(--color-primary);
+      color: #ffffff;
+    }
+    .btn-prev {
+      background-color: #f5f5f5;
+      color: var(--color-primary);
+    }
+    .btn-submit {
+      background-color: var(--color-secondary);
+      color: #ffffff;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png?v=2" alt="Kokowa Labs logo" class="logo-img" />
+        <span class="logo-descriptor">Strategic Growth for Specialty Coffee Businesses</span>
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#how-we-work">How We Work</a></li>
+        <li><a href="index.html#capabilities">What We Help With</a></li>
+        <li><a href="index.html#why-kokowa">About / Kobe</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="apply-section">
+    <h1>Apply for Your Strategic Diagnostic</h1>
+    <p class="intro">This application helps us understand where you are in your coffee journey and whether there’s a strong fit. It’s designed for founders who are serious about building a competitive coffee business.</p>
+    <form id="application-form">
+      <!-- Step 1 -->
+      <div class="form-step active" data-step="1">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" name="fullName" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone" />
+        <label for="company">Company name</label>
+        <input type="text" id="company" name="company" />
+        <label for="website">Website or Instagram</label>
+        <input type="text" id="website" name="website" />
+        <div class="form-navigation">
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" data-step="2">
+        <label for="stage">Business stage</label>
+        <select id="stage" name="stage" required>
+          <option value="">Select...</option>
+          <option value="pre-launch">Pre-launch (committed, not just idea)</option>
+          <option value="launch">Launch phase</option>
+          <option value="growth">Early growth</option>
+          <option value="scaling">Scaling</option>
+        </select>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" data-step="3">
+        <label for="situation">Briefly describe your current situation and what you are building.</label>
+        <textarea id="situation" name="situation" required></textarea>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step" data-step="4">
+        <label for="bottleneck">What feels most unclear, risky or frustrating right now?</label>
+        <textarea id="bottleneck" name="bottleneck" required></textarea>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="form-step" data-step="5">
+        <label>Which areas do you want to focus on? (select all that apply)</label>
+        <div>
+          <label><input type="checkbox" name="awareness" value="positioning"> Positioning / differentiation</label><br />
+          <label><input type="checkbox" name="awareness" value="pricing"> Pricing / margins</label><br />
+          <label><input type="checkbox" name="awareness" value="coherence"> Concept coherence</label><br />
+          <label><input type="checkbox" name="awareness" value="sequencing"> Sequencing / timing</label><br />
+          <label><input type="checkbox" name="awareness" value="go-to-market"> Go-to-market</label><br />
+          <label><input type="checkbox" name="awareness" value="operations"> Operations / logistics</label>
+        </div>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="form-step" data-step="6">
+        <label for="investment">Investment readiness</label>
+        <select id="investment" name="investment" required>
+          <option value="">Select...</option>
+          <option value="<1k">Less than €1K</option>
+          <option value="1k-5k">€1K–€5K</option>
+          <option value="5k-15k">€5K–€15K</option>
+          <option value=">15k">€15K+</option>
+        </select>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="form-step" data-step="7">
+        <label for="timeline">Timeline</label>
+        <select id="timeline" name="timeline" required>
+          <option value="">Select...</option>
+          <option value="asap">ASAP</option>
+          <option value="1-2 months">Within 1–2 months</option>
+          <option value="exploring">Exploring</option>
+        </select>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="button" class="btn-next">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 8 -->
+      <div class="form-step" data-step="8">
+        <div class="checkbox">
+          <input type="checkbox" id="commitment" name="commitment" required />
+          <label for="commitment">I understand Kokowa Labs works selectively with serious founders and I am ready to take action if there is a fit.</label>
+        </div>
+        <div class="form-navigation">
+          <button type="button" class="btn-prev">Back</button>
+          <button type="submit" class="btn-submit">Submit Application</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    // Multi-step form logic
+    const steps = document.querySelectorAll('.form-step');
+    let currentStep = 0;
+    const form = document.getElementById('application-form');
+
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+      });
+    }
+
+    document.querySelectorAll('.btn-next').forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+        }
+      });
+    });
+
+    document.querySelectorAll('.btn-prev').forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+        }
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Basic fit check based on investment and stage
+      const investment = document.getElementById('investment').value;
+      const stage = document.getElementById('stage').value;
+      const fit = (investment === '5k-15k' || investment === '>15k') && (stage === 'launch' || stage === 'growth' || stage === 'scaling');
+      if (fit) {
+        // Redirect to booking page if fit
+        window.location.href = 'booking.html';
+      } else {
+        // Show polite rejection message
+        alert('Thank you for your application. Based on your answers, Kokowa Labs may not be the right fit at this time.');
+      }
+    });
+  </script>
+</body>
+</html>
