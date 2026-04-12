@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule a Call – Kokowa Labs</title>
+  <meta name="description" content="Schedule your strategic diagnostic call with Kokowa Labs. Choose a time slot that works for you and receive a personalised confirmation." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    .booking-section {
+      padding: 4rem 0;
+    }
+    .booking-section h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: var(--color-primary);
+    }
+    .booking-section p.intro {
+      text-align: center;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--color-text);
+    }
+    .slots-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      max-width: 800px;
+      margin: 0 auto;
+      margin-bottom: 2rem;
+    }
+    .slot {
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .slot:hover {
+      border-color: var(--color-secondary);
+    }
+    .slot.selected {
+      background-color: var(--color-secondary);
+      color: #ffffff;
+      border-color: var(--color-secondary);
+    }
+    .confirm-section {
+      display: none;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .confirm-section.active {
+      display: block;
+    }
+    .confirm-section h2 {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+    .confirm-section p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .btn-confirm {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--color-primary);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 0.3rem;
+      margin-top: 1rem;
+    }
+    .btn-confirm:hover {
+      background-color: var(--color-secondary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png?v=2" alt="Kokowa Labs logo" class="logo-img" />
+        <span class="logo-descriptor">Strategic Growth for Specialty Coffee Businesses</span>
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#how-we-work">How We Work</a></li>
+        <li><a href="index.html#capabilities">What We Help With</a></li>
+        <li><a href="index.html#why-kokowa">About / Kobe</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="booking-section">
+    <h1>Schedule Your Strategic Diagnostic Call</h1>
+    <p class="intro">Select a time slot that works for you. We offer a limited number of calls each week to ensure focus and depth.</p>
+    <div class="slots-grid" id="slotsGrid">
+      <!-- Slots will be injected by JavaScript -->
+    </div>
+    <div class="confirm-section" id="confirmSection">
+      <h2>Confirmation</h2>
+      <p id="selectedSlotText"></p>
+      <p>Thank you for booking your strategic diagnostic call. You will receive an email shortly with a Google Meet link and preparation details.</p>
+      <h3>What to expect from this call</h3>
+      <p>1. Rapid understanding of your current situation<br />
+      2. Identification of key risks and missed opportunities<br />
+      3. Strategic reframing of what actually matters<br />
+      4. Clear next steps (with or without us)</p>
+      <a href="index.html" class="btn-confirm">Return to homepage</a>
+    </div>
+  </section>
+
+  <script>
+    // Define available slots (YYYY-MM-DD HH:MM format and display label)
+    const slots = [
+      { id: 'slot1', label: 'Monday 9:00–10:00', datetime: '2026-04-14T09:00' },
+      { id: 'slot2', label: 'Tuesday 14:00–15:00', datetime: '2026-04-15T14:00' },
+      { id: 'slot3', label: 'Wednesday 16:00–17:00', datetime: '2026-04-16T16:00' },
+      { id: 'slot4', label: 'Thursday 10:00–11:00', datetime: '2026-04-17T10:00' },
+      { id: 'slot5', label: 'Friday 15:00–16:00', datetime: '2026-04-18T15:00' }
+    ];
+    const slotsGrid = document.getElementById('slotsGrid');
+    const confirmSection = document.getElementById('confirmSection');
+    const selectedSlotText = document.getElementById('selectedSlotText');
+    // Render slots
+    slots.forEach(slot => {
+      const div = document.createElement('div');
+      div.className = 'slot';
+      div.id = slot.id;
+      div.textContent = slot.label;
+      div.addEventListener('click', function() {
+        document.querySelectorAll('.slot').forEach(el => el.classList.remove('selected'));
+        div.classList.add('selected');
+        // Show confirm section
+        selectedSlotText.textContent = `You have selected: ${slot.label}`;
+        confirmSection.classList.add('active');
+      });
+      slotsGrid.appendChild(div);
+    });
+  </script>
+</body>
+</html>
