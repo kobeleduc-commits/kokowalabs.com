@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="md:col-span-3">
             <div className="font-mono-label opacity-50 mb-5">Contact</div>
             <ul className="flex flex-col gap-3 opacity-90">
-              <li>hello@kokowalabs.com</li>
+              <li>kobe@kokowalabs.com</li>
               <li>By application only</li>
             </ul>
           </div>
