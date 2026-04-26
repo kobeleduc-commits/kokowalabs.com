@@ -13,56 +13,62 @@ Build a high-end strategic advisory site for **Kokowa Labs** (founder: Kobe Ledu
 
 ## Architecture
 - React 19 + React Router 7 + Tailwind + craco
-- Fraunces (display, distinctive serif) + Manrope (body) — deliberately avoiding Inter/Roboto AI-slop fonts
+- Fraunces (display) + Manrope (body) — deliberately avoiding AI-slop fonts
 - Color palette: cream `#F2EBDF` / espresso ink `#1A1410` / copper accent `#B0653F` / gold `#C8A26A`
 - Grain texture overlay, premium whitespace, minimalist motion
 - FastAPI backend + Motor MongoDB
 - Native multi-step Apply form → POST /api/applications → optional Make.com webhook forward
+- Admin gate via `ADMIN_TOKEN` env var, persisted in localStorage on the client
 
-## What's been implemented (2026-04-26)
-- Full nav: Approach / Work With Us / Insights / About + sticky **Apply** CTA (header-apply-cta)
-- Home page with all required sections in order:
-  - Hero (exact headline + subheadline + 'See How It Works' anchor + 'Apply for Strategic Diagnostic')
-  - Problem (4 bullets + 'Passion is not enough. Precision is.')
-  - New Game ('The Rules Have Changed.' + 'Quality is expected. Strategy is rare.')
-  - Positioning ('We Don't Consult. We Architect.' + comparison grid)
-  - Offer Stack (3 cards: Strategic Diagnostic Intensive / Coffee Business Architecture Sprint / Strategic Advisory; framed as outcomes)
-  - Process (4 steps: Apply / Qualification / Strategic Session / Deeper Engagement + 'This is not a sales call. This is a strategic working session.')
-  - Scarcity ('We only work with a limited number of founders per month.')
-  - Final CTA (dark cinematic)
-- Approach page (4 operating principles + origin-to-crema)
-- Work With Us page (re-uses Offer Stack + Process + Scarcity + Final CTA)
-- Insights page (4 field notes + newsletter)
-- About page (founder portrait + curated testimonials only — no submission form)
-- Apply page (7-step structured form: Identity / Stage / Situation / Challenge / Urgency / Commitment / Budget) with confidentiality note
-- Thank-you page ('We review every application carefully. If there is a strong fit, you will receive a personal invitation.')
-- Backend: POST /api/applications (validation + persistence + optional Make webhook), GET /api/applications (token-protected)
-- SEO: Organization JSON-LD with founder Kobe Leduc, OG tags, premium meta description
+## What's been implemented
+
+### Iteration 1 (2026-04-26)
+- Full marketing site (Approach / Work With Us / Insights / About / Apply / Thank-you)
+- 8-section home (Hero / Problem / New Game / Positioning / Offer Stack / Process / Scarcity / Final CTA)
+- Sticky Apply CTA, all required strict copy enforced
+- Backend: POST /api/applications with optional MAKE_WEBHOOK_URL forward
+- SEO: Organization JSON-LD with founder Kobe Leduc, OG tags
 - README with DNS (SPF/DKIM/DMARC) and funnel documentation
-- 100% backend + 100% frontend test coverage (testing_agent_v3 iteration_1)
+- 100% backend + 100% frontend testing_agent_v3 iteration_1
+
+### Iteration 2 (2026-04-26)
+- **Live intake counter**: `GET /api/applications/intake-load` (public, no PII) + animated "Currently reviewing X applications this week" pill in Scarcity + "remaining slots" stat — reinforces filtered-access positioning
+- **Operational admin dashboard** at `/admin`:
+  - Token gate (URL param accepted once then moved to localStorage and stripped from URL — no leak via history/Referer)
+  - Filter pills (All / Pending / Qualified / Declined) with live counts
+  - Detail drawer with full application context
+  - PATCH `/api/applications/{id}/status` to mark qualified or declined
+  - Standalone shell — no marketing nav/footer leakage
+- **Real `/insights/:slug` detail pages** with 4 written field notes (Positioning / Economics / Sequencing / Differentiation), each with cover image, multi-section body, "Continue reading" next link, and Apply CTA
+- 100% backend + 100% frontend testing_agent_v3 iteration_2 (16 backend tests, 14 frontend assertions, em-dash policy enforced across all surfaces)
 
 ## Constraints respected
-- No em-dashes anywhere in user-facing copy (verified by tests)
-- 'The New Game of Coffee™' used exactly once
+- No em-dashes anywhere in user-facing copy (verified by tests on / /insights /insights/:slug /admin)
+- "The New Game of Coffee™" used exactly once
 - No testimonial submission form (only curated)
 - No purple/violet AI-slop gradient
 - All offers framed as outcomes, not services
 
-## P1 backlog
-- Real Tally/Typeform option behind feature flag (currently native form is preferred for control)
-- Insights detail pages (`/insights/:slug`) once content is written
-- Real founder portrait (currently Unsplash placeholder)
-- Connect Make.com webhook + Calendly hidden link in production
+## Backlog
 
-## P2 backlog
-- Newsletter capture wired to ConvertKit / Resend audience
+### P1 — needs external input
+- Plug real `MAKE_WEBHOOK_URL` (Make scenario inbound) into `backend/.env`
+- Replace Unsplash founder portrait with Kobe's actual photo
+- Configure DNS (SPF/DKIM/DMARC) on `kokowalabs.com`
+- Set up the hidden Calendly "Strategic Session" event and reference inside Make's approval template
+
+### P2 — content & polish
+- Strategic Diagnostic anonymous case-study page (proof without breaking selectivity)
+- Newsletter capture wired to Resend / ConvertKit (currently UI only)
+- Application export (CSV) from /admin
+- Email digest of new applications to Kobe (daily summary via Make)
+
+### P3 — engagement depth
 - Gated long-form Insights (PDF download in exchange for email)
-- Strategic Diagnostic case-study page (anonymous results)
-- /admin protected dashboard for browsing applications
+- Founder video introduction in About hero
+- "Strategic question of the month" companion to each Insight
 
-## Deferred
-- Email template copy lives in Make (not the website itself)
-- DNS setup is the operator's responsibility (documented in README)
-
-## Known notes
-- `MAKE_WEBHOOK_URL` and `ADMIN_TOKEN` env vars are optional. App functions without them.
+## Notable design decisions
+- `monthly_slots = 6` is the static brand promise. The public `intake-load` endpoint clamps `remaining` to a minimum of 1 so the live pill never reads 0 or negative.
+- The Calendly link is intentionally never exposed in the codebase. It belongs only inside the Make approval template.
+- Admin token can be passed once via `?token=...` for first-use convenience, then it is moved into `localStorage` and the URL is cleaned. No long-term leak vector.

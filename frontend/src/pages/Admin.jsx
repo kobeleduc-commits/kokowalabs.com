@@ -29,8 +29,19 @@ function fmtDate(iso) {
 
 export default function Admin() {
   const [params, setParams] = useSearchParams();
-  const [token, setToken] = useState(params.get("token") || "");
-  const [tokenInput, setTokenInput] = useState(token);
+  const initialToken =
+    params.get("token") ||
+    (typeof window !== "undefined" ? window.localStorage.getItem("kk_admin_token") || "" : "");
+  const [token, setToken] = useState(initialToken);
+  const [tokenInput, setTokenInput] = useState(initialToken);
+
+  // Strip token from the URL after reading; persist in localStorage instead
+  useEffect(() => {
+    if (params.get("token")) {
+      window.localStorage.setItem("kk_admin_token", params.get("token"));
+      setParams({}, { replace: true });
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -58,7 +69,7 @@ export default function Admin() {
   const submitToken = (e) => {
     e.preventDefault();
     setToken(tokenInput);
-    setParams({ token: tokenInput });
+    if (tokenInput) window.localStorage.setItem("kk_admin_token", tokenInput);
   };
 
   const updateStatus = async (id, status) => {
