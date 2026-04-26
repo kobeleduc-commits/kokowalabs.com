@@ -227,7 +227,9 @@ async def applications_digest(admin_token: Optional[str] = None, hours: int = 24
 
     since = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     rows = await db.applications.find(
-        {"created_at": {"$gte": since}}, {"_id": 0}
+        {"created_at": {"$gte": since}},
+        {"_id": 0, "id": 1, "name": 1, "company": 1, "stage": 1,
+         "urgency": 1, "status": 1, "created_at": 1},
     ).sort("created_at", -1).to_list(500)
 
     by_status = {"pending_review": 0, "qualified": 0, "declined": 0}
