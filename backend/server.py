@@ -8,7 +8,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import httpx
 
 
@@ -129,6 +129,31 @@ async def create_application(payload: ApplicationCreate):
     return app_obj
 
 
+@api_router.get("/applications/intake-load")
+async def intake_load():
+    """
+    Public endpoint. Returns coarse, anonymized signals that reinforce the
+    filtered-access positioning. No PII. Counts only.
+    """
+    now = datetime.now(timezone.utc)
+    week_ago = (now - timedelta(days=7)).isoformat()
+    month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
+
+    week_count = await db.applications.count_documents({"created_at": {"$gte": week_ago}})
+    month_count = await db.applications.count_documents({"created_at": {"$gte": month_start}})
+
+    # The static monthly slot ceiling is intentional: it is the brand promise.
+    # We display "remaining slots" as a soft signal, never going below 1.
+    monthly_slots = 6
+    remaining = max(1, monthly_slots - month_count)
+
+    return {
+        "in_review_this_week": week_count,
+        "remaining_slots_this_month": remaining,
+        "monthly_slots": monthly_slots,
+    }
+
+
 @api_router.get("/applications", response_model=List[Application])
 async def list_applications(admin_token: Optional[str] = None):
     expected = os.environ.get('ADMIN_TOKEN', '').strip()
@@ -139,6 +164,20 @@ async def list_applications(admin_token: Optional[str] = None):
         if isinstance(r.get('created_at'), str):
             r['created_at'] = datetime.fromisoformat(r['created_at'])
     return rows
+
+
+@api_router.patch("/applications/{app_id}/status")
+async def update_application_status(app_id: str, body: dict, admin_token: Optional[str] = None):
+    expected = os.environ.get('ADMIN_TOKEN', '').strip()
+    if not expected or admin_token != expected:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    new_status = (body or {}).get("status", "").strip()
+    if new_status not in {"pending_review", "qualified", "declined"}:
+        raise HTTPException(status_code=400, detail="Invalid status")
+    res = await db.applications.update_one({"id": app_id}, {"$set": {"status": new_status}})
+    if res.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Application not found")
+    return {"id": app_id, "status": new_status}
 
 
 app.include_router(api_router)

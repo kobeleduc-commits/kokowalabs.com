@@ -1,31 +1,6 @@
+import { Link } from "react-router-dom";
 import { IMAGES } from "@/lib/images";
-
-const POSTS = [
-  {
-    tag: "Positioning",
-    title: "Quality is expected. Strategy is rare.",
-    excerpt: "Why specialty coffee has matured past the point where great beans alone can carry a business, and what to build instead.",
-    read: "6 min read",
-  },
-  {
-    tag: "Economics",
-    title: "Margin architecture: where coffee businesses break.",
-    excerpt: "The structural points where unit economics fail, mapped against the moments founders typically miss them.",
-    read: "8 min read",
-  },
-  {
-    tag: "Sequencing",
-    title: "The right move at the wrong moment is the wrong move.",
-    excerpt: "On strategic sequencing in early-stage coffee businesses and the cost of inverting the order.",
-    read: "5 min read",
-  },
-  {
-    tag: "Differentiation",
-    title: "Differentiation is not a tagline. It is a system.",
-    excerpt: "How positioning, offer, and operations align into a single coherent differentiation system.",
-    read: "7 min read",
-  },
-];
+import { INSIGHTS } from "@/lib/insights";
 
 export default function Insights() {
   return (
@@ -45,9 +20,10 @@ export default function Insights() {
       <section className="kk-section">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "var(--kk-line)" }}>
-            {POSTS.map((p, i) => (
-              <article
-                key={p.title}
+            {INSIGHTS.map((p, i) => (
+              <Link
+                key={p.slug}
+                to={`/insights/${p.slug}`}
                 className="p-10 md:p-14 flex flex-col cursor-pointer transition-colors duration-500 hover:bg-[color:var(--kk-paper)]"
                 style={{ background: "var(--kk-cream)", minHeight: "320px" }}
                 data-testid={`insights-post-${i}`}
@@ -56,7 +32,7 @@ export default function Insights() {
                   <div className="font-mono-label" style={{ color: "var(--kk-copper)" }}>{p.tag}</div>
                   <div className="font-mono-label opacity-50">{p.read}</div>
                 </div>
-                <h3 className="font-display text-[28px] md:text-[36px] leading-[1.1] mt-8 font-medium">
+                <h3 className="font-display text-[28px] md:text-[36px] leading-[1.1] mt-8 font-medium" style={{ color: "var(--kk-ink)" }}>
                   {p.title}
                 </h3>
                 <p className="mt-5 text-[15px] leading-relaxed flex-1" style={{ color: "var(--kk-mute)" }}>
@@ -65,7 +41,7 @@ export default function Insights() {
                 <div className="mt-8 link-underline text-[14px]" style={{ color: "var(--kk-ink)" }}>
                   Read the field note
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
