@@ -23,20 +23,10 @@ db = client[os.environ["DB_NAME"]]
 
 app = FastAPI(title="Kokowa Labs API")
 
-# CORS must be added before routes are included.
-cors_origins = [
-    origin.strip()
-    for origin in os.environ.get(
-        "CORS_ORIGINS",
-        "https://kokowalabs.com,https://www.kokowalabs.com"
-    ).split(",")
-    if origin.strip()
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -50,7 +40,6 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# --- Models ---
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -92,7 +81,6 @@ class Application(BaseModel):
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
-# --- Routes ---
 @api_router.get("/")
 async def root():
     return {"message": "Kokowa Labs API"}
@@ -286,7 +274,6 @@ async def applications_digest(admin_token: Optional[str] = None, hours: int = 24
     }
 
 
-# --- Newsletter subscriptions ---
 class SubscribeCreate(BaseModel):
     email: EmailStr
     source: Optional[str] = "site"
