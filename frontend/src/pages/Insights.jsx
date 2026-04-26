@@ -1,8 +1,28 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { IMAGES } from "@/lib/images";
 import { INSIGHTS } from "@/lib/insights";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
 export default function Insights() {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("idle"); // idle | sending | success | error
+
+  const subscribe = async (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setState("sending");
+    try {
+      await axios.post(`${API}/subscribers`, { email: email.trim(), source: "insights" });
+      setState("success");
+      setEmail("");
+    } catch {
+      setState("error");
+    }
+  };
   return (
     <div data-testid="page-insights">
       <section className="pt-10 md:pt-20">
@@ -14,6 +34,29 @@ export default function Insights() {
           <p className="mt-10 max-w-2xl text-[18px] leading-relaxed" style={{ color: "var(--kk-ink-soft)" }}>
             Selective writing. No fluff. Each piece earns its place by being decision-grade for serious coffee founders.
           </p>
+        </div>
+      </section>
+
+      {/* Strategic Question of the Month */}
+      <section className="kk-section pt-0" data-testid="strategic-question">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+          <div
+            className="grid grid-cols-1 lg:grid-cols-12 gap-10 p-10 md:p-16"
+            style={{ background: "var(--kk-ink)", color: "var(--kk-cream)" }}
+          >
+            <div className="lg:col-span-3">
+              <div className="font-mono-label" style={{ color: "var(--kk-gold)" }}>Question of the Month</div>
+              <div className="font-display text-[14px] mt-4 opacity-60">For founders only.</div>
+            </div>
+            <div className="lg:col-span-9">
+              <p className="font-display text-[28px] md:text-[40px] leading-[1.15] tracking-tight">
+                If a serious buyer asked you, in one calm sentence, why your business exists in the form it takes today, could you answer them, or would you reach for the menu?
+              </p>
+              <p className="mt-8 max-w-2xl text-[15px] leading-relaxed opacity-75">
+                Sit with it for a week. Most founders cannot. The ones who can are building architecture, not coffee.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -56,19 +99,37 @@ export default function Insights() {
             <p className="mt-6 max-w-xl opacity-80 leading-relaxed">
               Occasional, considered. Sent only when there is something worth saying.
             </p>
-            <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-xl" onSubmit={(e) => e.preventDefault()} data-testid="insights-newsletter">
+            <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-xl" onSubmit={subscribe} data-testid="insights-newsletter">
               <input
                 type="email"
                 required
                 placeholder="your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={state === "sending"}
                 className="kk-input flex-1"
                 style={{ color: "var(--kk-cream)", borderColor: "rgba(242,235,223,0.25)" }}
                 data-testid="insights-newsletter-email"
               />
-              <button type="submit" className="kk-btn kk-btn-light" data-testid="insights-newsletter-submit">
-                Subscribe
+              <button
+                type="submit"
+                disabled={state === "sending"}
+                className="kk-btn kk-btn-light"
+                data-testid="insights-newsletter-submit"
+              >
+                {state === "sending" ? "Sending..." : state === "success" ? "Subscribed" : "Subscribe"}
               </button>
             </form>
+            {state === "success" && (
+              <p className="mt-4 text-[13px]" style={{ color: "var(--kk-gold)" }} data-testid="insights-newsletter-success">
+                You are on the list. Selective dispatches only.
+              </p>
+            )}
+            {state === "error" && (
+              <p className="mt-4 text-[13px]" style={{ color: "var(--kk-copper)" }} data-testid="insights-newsletter-error">
+                Something went wrong. Try again in a moment.
+              </p>
+            )}
           </div>
           <div className="lg:col-span-5">
             <div className="kk-img-frame" style={{ aspectRatio: "4 / 3" }}>

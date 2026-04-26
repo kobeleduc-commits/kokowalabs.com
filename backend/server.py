@@ -1,8 +1,10 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Response
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import csv
+import io
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
@@ -178,6 +180,122 @@ async def update_application_status(app_id: str, body: dict, admin_token: Option
     if res.matched_count == 0:
         raise HTTPException(status_code=404, detail="Application not found")
     return {"id": app_id, "status": new_status}
+
+
+@api_router.get("/applications/export.csv")
+async def export_applications_csv(admin_token: Optional[str] = None):
+    expected = os.environ.get('ADMIN_TOKEN', '').strip()
+    if not expected or admin_token != expected:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    rows = await db.applications.find({}, {"_id": 0}).sort("created_at", -1).to_list(2000)
+
+    columns = [
+        "created_at", "status", "name", "email", "company", "website",
+        "stage", "situation", "urgency", "commitment", "budget", "challenge", "id",
+    ]
+    buf = io.StringIO()
+    writer = csv.DictWriter(buf, fieldnames=columns, extrasaction="ignore", quoting=csv.QUOTE_ALL)
+    writer.writeheader()
+    for r in rows:
+        flat = {k: r.get(k, "") for k in columns}
+        # Normalize newlines inside the open challenge field
+        if isinstance(flat.get("challenge"), str):
+            flat["challenge"] = flat["challenge"].replace("\r", " ").replace("\n", " ").strip()
+        writer.writerow(flat)
+
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return Response(
+        content=buf.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="kokowa-applications-{today}.csv"'},
+    )
+
+
+@api_router.get("/applications/digest")
+async def applications_digest(admin_token: Optional[str] = None, hours: int = 24):
+    """
+    Make/Zapier-ready summary of recent intake. JSON only. No PII beyond what's
+    already in /api/applications. Designed to be polled or triggered by Make.
+    """
+    expected = os.environ.get('ADMIN_TOKEN', '').strip()
+    if not expected or admin_token != expected:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    if hours <= 0 or hours > 24 * 30:
+        raise HTTPException(status_code=400, detail="hours must be 1..720")
+
+    since = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
+    rows = await db.applications.find(
+        {"created_at": {"$gte": since}}, {"_id": 0}
+    ).sort("created_at", -1).to_list(500)
+
+    by_status = {"pending_review": 0, "qualified": 0, "declined": 0}
+    by_stage = {}
+    by_urgency = {}
+    for r in rows:
+        by_status[r.get("status", "pending_review")] = by_status.get(r.get("status", "pending_review"), 0) + 1
+        by_stage[r.get("stage", "")] = by_stage.get(r.get("stage", ""), 0) + 1
+        by_urgency[r.get("urgency", "")] = by_urgency.get(r.get("urgency", ""), 0) + 1
+
+    return {
+        "window_hours": hours,
+        "since": since,
+        "total": len(rows),
+        "by_status": by_status,
+        "by_stage": by_stage,
+        "by_urgency": by_urgency,
+        "highlights": [
+            {
+                "id": r.get("id"),
+                "name": r.get("name"),
+                "company": r.get("company"),
+                "stage": r.get("stage"),
+                "urgency": r.get("urgency"),
+                "status": r.get("status"),
+                "created_at": r.get("created_at"),
+            }
+            for r in rows[:10]
+        ],
+    }
+
+
+# --- Newsletter subscriptions ---
+class SubscribeCreate(BaseModel):
+    email: EmailStr
+    source: Optional[str] = "site"
+
+
+@api_router.post("/subscribers")
+async def create_subscriber(payload: SubscribeCreate):
+    email = str(payload.email).strip().lower()
+    now = datetime.now(timezone.utc).isoformat()
+    # Idempotent: upsert on email
+    await db.subscribers.update_one(
+        {"email": email},
+        {
+            "$setOnInsert": {
+                "id": str(uuid.uuid4()),
+                "email": email,
+                "created_at": now,
+            },
+            "$set": {
+                "last_seen_at": now,
+                "source": payload.source or "site",
+            },
+        },
+        upsert=True,
+    )
+    return {"ok": True}
+
+
+@api_router.get("/subscribers")
+async def list_subscribers(admin_token: Optional[str] = None):
+    expected = os.environ.get('ADMIN_TOKEN', '').strip()
+    if not expected or admin_token != expected:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    rows = await db.subscribers.find({}, {"_id": 0}).sort("created_at", -1).to_list(2000)
+    return rows
 
 
 app.include_router(api_router)

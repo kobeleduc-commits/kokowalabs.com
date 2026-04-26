@@ -9,6 +9,7 @@ import InsightDetail from "@/pages/InsightDetail";
 import About from "@/pages/About";
 import Apply from "@/pages/Apply";
 import ThankYou from "@/pages/ThankYou";
+import CaseStudies from "@/pages/CaseStudies";
 import Admin from "@/pages/Admin";
 
 function MarketingShell({ children }) {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/work-with-us" element={<MarketingShell><WorkWithUs /></MarketingShell>} />
           <Route path="/insights" element={<MarketingShell><Insights /></MarketingShell>} />
           <Route path="/insights/:slug" element={<MarketingShell><InsightDetail /></MarketingShell>} />
+          <Route path="/case-studies" element={<MarketingShell><CaseStudies /></MarketingShell>} />
           <Route path="/about" element={<MarketingShell><About /></MarketingShell>} />
           <Route path="/apply" element={<MarketingShell><Apply /></MarketingShell>} />
           <Route path="/thank-you" element={<MarketingShell><ThankYou /></MarketingShell>} />

@@ -24,6 +24,7 @@ export default function Footer() {
               <li><Link to="/approach" className="link-underline">Approach</Link></li>
               <li><Link to="/work-with-us" className="link-underline">Work With Us</Link></li>
               <li><Link to="/insights" className="link-underline">Insights</Link></li>
+              <li><Link to="/case-studies" className="link-underline">Case Studies</Link></li>
               <li><Link to="/about" className="link-underline">About</Link></li>
               <li><Link to="/apply" className="link-underline">Apply</Link></li>
             </ul>

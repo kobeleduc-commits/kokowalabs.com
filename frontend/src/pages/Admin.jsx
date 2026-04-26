@@ -43,17 +43,26 @@ export default function Admin() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [apps, setApps] = useState([]);
+  const [subscribers, setSubscribers] = useState([]);
+  const [digest, setDigest] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("all");
+  const [tab, setTab] = useState("applications");
   const [selected, setSelected] = useState(null);
 
   const load = async (t) => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get(`${API}/applications`, { params: { admin_token: t } });
-      setApps(res.data || []);
+      const [appsRes, subsRes, digestRes] = await Promise.all([
+        axios.get(`${API}/applications`, { params: { admin_token: t } }),
+        axios.get(`${API}/subscribers`, { params: { admin_token: t } }).catch(() => ({ data: [] })),
+        axios.get(`${API}/applications/digest`, { params: { admin_token: t, hours: 168 } }).catch(() => ({ data: null })),
+      ]);
+      setApps(appsRes.data || []);
+      setSubscribers(subsRes.data || []);
+      setDigest(digestRes.data || null);
     } catch (e) {
       setError(e?.response?.status === 401 ? "Invalid token" : "Failed to load");
       setApps([]);
@@ -84,6 +93,12 @@ export default function Admin() {
     } catch {
       setError("Update failed");
     }
+  };
+
+  const exportCsv = () => {
+    if (!token) return;
+    const url = `${API}/applications/export.csv?admin_token=${encodeURIComponent(token)}`;
+    window.open(url, "_blank", "noopener");
   };
 
   const filtered = apps.filter((a) => filter === "all" || a.status === filter);
@@ -131,28 +146,50 @@ export default function Admin() {
 
   return (
     <div data-testid="page-admin">
-      <section className="pt-6 pb-10">
+      <section className="pt-6 pb-6">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Operations</div>
           <div className="mt-3 flex items-end justify-between flex-wrap gap-4">
             <h1 className="font-display text-[40px] md:text-[56px] leading-tight font-medium tracking-tight">
-              Application intake.
+              Operator console.
             </h1>
-            <div className="flex items-center gap-2 text-[13px]" style={{ color: "var(--kk-mute)" }}>
-              <span data-testid="admin-total-count">{apps.length} total</span>
+            <div className="flex items-center gap-3 text-[13px] flex-wrap" style={{ color: "var(--kk-mute)" }}>
+              <span data-testid="admin-total-count">{apps.length} applications</span>
               <span>·</span>
-              <button
-                onClick={() => load(token)}
-                className="link-underline"
-                data-testid="admin-refresh"
-              >
+              <span data-testid="admin-subscribers-count">{subscribers.length} subscribers</span>
+              <span>·</span>
+              <button onClick={() => load(token)} className="link-underline" data-testid="admin-refresh">
                 Refresh
               </button>
+              <span>·</span>
+              <button onClick={exportCsv} className="link-underline" data-testid="admin-export-csv">
+                Export CSV
+              </button>
             </div>
+          </div>
+
+          <div className="mt-8 flex gap-2 flex-wrap" data-testid="admin-tabs">
+            {[
+              { k: "applications", label: "Applications" },
+              { k: "subscribers", label: "Subscribers" },
+              { k: "digest", label: "7-day digest" },
+            ].map((t) => (
+              <button
+                key={t.k}
+                onClick={() => setTab(t.k)}
+                className={`px-4 py-2 text-[13px] rounded-full transition-all ${
+                  tab === t.k ? "kk-btn" : "kk-btn kk-btn-ghost"
+                }`}
+                data-testid={`admin-tab-${t.k}`}
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
+      {tab === "applications" && (
       <section className="pb-32">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="flex flex-wrap gap-2 mb-8" data-testid="admin-filters">
@@ -228,8 +265,87 @@ export default function Admin() {
           </div>
         </div>
       </section>
+      )}
 
-      {/* Detail drawer */}
+      {tab === "subscribers" && (
+        <section className="pb-32">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+            <div className="font-mono-label mb-6" style={{ color: "var(--kk-mute)" }}>
+              Newsletter subscribers · {subscribers.length}
+            </div>
+            {subscribers.length === 0 ? (
+              <div className="py-20 text-center" style={{ color: "var(--kk-mute)" }} data-testid="admin-subscribers-empty">
+                No subscribers yet.
+              </div>
+            ) : (
+              <div className="divide-y" data-testid="admin-subscribers-list">
+                {subscribers.map((s) => (
+                  <div key={s.id || s.email} className="py-4 grid grid-cols-12 gap-4 items-center">
+                    <div className="col-span-12 md:col-span-5 font-display text-[18px]">{s.email}</div>
+                    <div className="col-span-6 md:col-span-3 text-[13px]" style={{ color: "var(--kk-mute)" }}>
+                      <span className="font-mono-label mr-2">Source</span>{s.source || "site"}
+                    </div>
+                    <div className="col-span-6 md:col-span-4 text-[13px]" style={{ color: "var(--kk-mute)" }}>
+                      <span className="font-mono-label mr-2">Joined</span>{fmtDate(s.created_at)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {tab === "digest" && (
+        <section className="pb-32">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+            <div className="font-mono-label mb-6" style={{ color: "var(--kk-mute)" }}>
+              Last 7 days · Make-ready summary
+            </div>
+            {!digest ? (
+              <div className="py-20" style={{ color: "var(--kk-mute)" }} data-testid="admin-digest-empty">
+                No digest data yet.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "var(--kk-line)" }} data-testid="admin-digest">
+                <div className="p-8" style={{ background: "var(--kk-cream)" }}>
+                  <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Total</div>
+                  <div className="font-display text-[48px] leading-none mt-3">{digest.total}</div>
+                  <div className="text-[13px] mt-2" style={{ color: "var(--kk-mute)" }}>applications received</div>
+                </div>
+                <div className="p-8" style={{ background: "var(--kk-cream)" }}>
+                  <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>By status</div>
+                  <ul className="mt-3 space-y-1 text-[14px]">
+                    {Object.entries(digest.by_status || {}).map(([k, v]) => (
+                      <li key={k} className="flex justify-between">
+                        <span>{k.replace("_", " ")}</span><span style={{ color: "var(--kk-copper)" }}>{v}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="p-8" style={{ background: "var(--kk-cream)" }}>
+                  <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>By urgency</div>
+                  <ul className="mt-3 space-y-1 text-[14px]">
+                    {Object.entries(digest.by_urgency || {}).filter(([k]) => k).map(([k, v]) => (
+                      <li key={k} className="flex justify-between">
+                        <span>{k}</span><span style={{ color: "var(--kk-copper)" }}>{v}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-10 p-6" style={{ background: "var(--kk-paper)", borderLeft: "2px solid var(--kk-copper)" }}>
+              <div className="font-mono-label mb-2" style={{ color: "var(--kk-mute)" }}>Make / Zapier endpoint</div>
+              <code className="text-[13px] break-all">GET /api/applications/digest?admin_token=...&hours=24</code>
+              <p className="mt-3 text-[13px]" style={{ color: "var(--kk-mute)" }}>
+                Poll this from a Make scheduled scenario to email Kobe a daily intake summary. Adjust the `hours` parameter to control the window.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
       {selected && (
         <div
           className="fixed inset-0 z-[60] flex justify-end"
