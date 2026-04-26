@@ -45,6 +45,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 96px;
     background: var(--kk-cream);
 }
 
@@ -171,8 +172,27 @@ body {
 
 /* Section */
 .kk-section {
-    padding: clamp(5rem, 10vw, 9rem) 0;
+    padding: clamp(4rem, 10vw, 9rem) 0;
 }
+
+/* Mobile UX polish */
+@media (max-width: 768px) {
+    .kk-section {
+        padding: 4.5rem 0;
+    }
+    .kk-btn {
+        padding: 0.95rem 1.5rem;
+        font-size: 0.875rem;
+        min-height: 48px;
+    }
+    /* Larger tap targets for nav and form buttons */
+    button, a {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Prevent any element from creating horizontal scroll */
+img, video, svg, iframe { max-width: 100%; }
 
 .kk-divider {
     height: 1px;

@@ -2,37 +2,162 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#1A1410" />
-        <meta name="description" content="Kokowa Labs is a strategic architecture partner for serious specialty coffee founders. Build a profitable, differentiated coffee business in 1/3 of the time." />
-        <meta property="og:title" content="Kokowa Labs | Strategic Architecture for Specialty Coffee" />
-        <meta property="og:description" content="Strategic architecture partner for serious specialty coffee founders. The New Game of Coffee." />
+
+        <!-- Primary SEO -->
+        <title>Kokowa Labs | Strategic Coffee Consultancy for Serious Founders</title>
+        <meta
+            name="description"
+            content="Kokowa Labs helps serious coffee founders build profitable, differentiated coffee businesses through strategic positioning, commercial logic, and full value chain expertise from origin to crema."
+        />
+        <meta name="author" content="Kobe Leduc" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://kokowalabs.com/" />
+
+        <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kokowalabs.com" />
+        <meta property="og:site_name" content="Kokowa Labs" />
+        <meta property="og:url" content="https://kokowalabs.com/" />
+        <meta
+            property="og:title"
+            content="Kokowa Labs | Strategic Coffee Consultancy for Serious Founders"
+        />
+        <meta
+            property="og:description"
+            content="Strategic architecture partner for serious specialty coffee founders. Build a profitable, differentiated coffee business in 1/3 of the time. The New Game of Coffee."
+        />
+        <meta
+            property="og:image"
+            content="https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/4vamosvy_Scherm_afbeelding-2026-04-10-om-11.51.27.webp"
+        />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="1600" />
+        <meta property="og:image:alt" content="Kobe Leduc operating a Giesen specialty coffee roaster" />
+        <meta property="og:locale" content="en_US" />
+
+        <!-- Twitter card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kokowa Labs | Strategic Coffee Consultancy" />
+        <meta
+            name="twitter:description"
+            content="Strategic architecture partner for serious specialty coffee founders. Founded and led by Kobe Leduc."
+        />
+        <meta
+            name="twitter:image"
+            content="https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/4vamosvy_Scherm_afbeelding-2026-04-10-om-11.51.27.webp"
+        />
+
+        <!-- Favicon (cross-origin OK; browsers cache successfully) -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/ahjj8did_image.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            href="https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/ahjj8did_image.png"
+        />
+
+        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        <title>Kokowa Labs | Strategic Architecture for Specialty Coffee</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Structured data: Organization + ProfessionalService + Person -->
         <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Kokowa Labs",
-          "url": "https://kokowalabs.com",
-          "logo": "https://kokowalabs.com/logo.png",
-          "founder": {
-            "@type": "Person",
-            "name": "Kobe Leduc"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kokowalabs.com/#organization",
+      "name": "Kokowa Labs",
+      "alternateName": "The New Game of Coffee",
+      "url": "https://kokowalabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/ahjj8did_image.png",
+        "width": 512,
+        "height": 512
+      },
+      "founder": { "@id": "https://kokowalabs.com/#kobe-leduc" },
+      "sameAs": [],
+      "description": "Strategic architecture partner for serious specialty coffee founders. Strategic coffee consultancy covering positioning, commercial logic, offer architecture and sequencing, from origin to crema."
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://kokowalabs.com/#service",
+      "name": "Kokowa Labs Strategic Coffee Consultancy",
+      "url": "https://kokowalabs.com/",
+      "image": "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/4vamosvy_Scherm_afbeelding-2026-04-10-om-11.51.27.webp",
+      "priceRange": "Application only",
+      "serviceType": "Strategic coffee consultancy for specialty coffee founders",
+      "areaServed": "Worldwide",
+      "provider": { "@id": "https://kokowalabs.com/#organization" },
+      "founder": { "@id": "https://kokowalabs.com/#kobe-leduc" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Engagements",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic Diagnostic Intensive",
+              "description": "A complete strategic read of your coffee business, the gaps, and the highest leverage move."
+            }
           },
-          "description": "Strategic architecture partner for serious specialty coffee founders.",
-          "sameAs": []
-        }
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Coffee Business Architecture Sprint",
+              "description": "A coherent business architecture: positioning, offer structure, commercial logic, sequenced for the next twelve months."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic Advisory",
+              "description": "Ongoing strategic partnership at the founder level. Selective. Limited slots."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://kokowalabs.com/#kobe-leduc",
+      "name": "Kobe Leduc",
+      "jobTitle": "Founder and Strategic Architecture Partner",
+      "worksFor": { "@id": "https://kokowalabs.com/#organization" },
+      "image": "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/2ki1vzgp_image.%20%20%20foto%20.png",
+      "description": "Founder of Kokowa Labs. Fifteen plus years across the full specialty coffee value chain, from origin sourcing to roastery economics."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kokowalabs.com/#website",
+      "url": "https://kokowalabs.com/",
+      "name": "Kokowa Labs",
+      "publisher": { "@id": "https://kokowalabs.com/#organization" },
+      "inLanguage": "en"
+    }
+  ]
+}
         </script>
+
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
     </head>
     <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <noscript>
+            You need to enable JavaScript to run this app.
+        </noscript>
         <div id="root"></div>
         <a
             id="emergent-badge"
