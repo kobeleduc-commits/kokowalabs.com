@@ -123,7 +123,8 @@ export default function Header() {
             <span aria-hidden style={{ display: "inline-block", transform: "translateY(-1px)" }}>↗</span>
           </Link>
           <button
-            className="lg:hidden p-3 -mr-2 relative z-[60]"
+            className="lg:hidden p-3 -mr-2 relative z-[60] flex items-center justify-center"
+            style={{ minWidth: 48, minHeight: 48 }}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-drawer"
