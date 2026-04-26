@@ -47,6 +47,28 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 96px;
     background: var(--kk-cream);
+    --header-height: 104px;
+}
+
+@media (max-width: 768px) {
+    html { --header-height: 88px; scroll-padding-top: 88px; }
+}
+
+/* Per spec: anchored sections must offset themselves so the sticky header
+   never covers their titles. */
+section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"] {
+    scroll-margin-top: 96px;
+}
+
+@media (max-width: 768px) {
+    section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"] {
+        scroll-margin-top: 88px;
+    }
+}
+
+/* Lock body scroll while mobile menu is open */
+body.menu-open {
+    overflow: hidden;
 }
 
 body {
@@ -276,3 +298,35 @@ img, video, svg, iframe { max-width: 100%; }
 
 /* Hide horizontal overflow */
 html, body { overflow-x: hidden; }
+
+/* MOBILE MENU per spec: fixed panel below header, high z-index,
+   visible blurred background, full width, proper padding, no clipping. */
+.mobile-menu {
+    position: fixed;
+    top: var(--header-height, 88px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(242, 235, 223, 0.98);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    padding: 28px 24px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-top: 1px solid var(--kk-line);
+    /* hidden by default, smooth open */
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.32s cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.mobile-menu.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
