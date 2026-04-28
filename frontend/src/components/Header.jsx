@@ -67,7 +67,7 @@ export default function Header() {
     <header
       data-testid="site-header"
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled ? "py-2 md:py-3" : "py-3 md:py-4"
+        "py-2 md:py-2"
       }`}
       style={{
         background: scrolled ? "rgba(242, 235, 223, 0.92)" : "rgba(242, 235, 223, 0.62)",
