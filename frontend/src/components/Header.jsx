@@ -88,7 +88,7 @@ export default function Header() {
           <img
             src={ASSETS.logo}
             alt="Kokowa Field Labs, Strategic Growth for Premium F&B"
-            className="h-16 md:h-20 lg:h-[88px] w-auto"
+            className="h-24 md:h-32 lg:h-[140px] w-auto"
             style={{
               display: "block",
               objectFit: "contain",
