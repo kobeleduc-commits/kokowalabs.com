@@ -86,7 +86,7 @@ export default function Header() {
           onClick={() => setOpen(false)}
         >
           <img
-            src={ASSETS.logo}
+            src="/Kokowa logo.png"
             alt="Kokowa Field Labs, Strategic Growth for Premium F&B"
             className="h-24 md:h-32 lg:h-[140px] w-auto"
             style={{
