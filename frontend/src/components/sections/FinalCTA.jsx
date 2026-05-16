@@ -27,7 +27,7 @@ export default function FinalCTA() {
             If you are serious about building a coffee business that holds together under pressure, the next step is structured.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
-            <Link to="/apply" className="kk-btn kk-btn-light" data-testid="final-cta-apply">
+            <Link to="/apply" className="kk-btn" data-testid="final-cta-apply">
               Apply for Strategic Diagnostic
               <span aria-hidden>↗</span>
             </Link>

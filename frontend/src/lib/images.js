@@ -5,10 +5,10 @@
 
 export const ASSETS = {
   // Brand
-  logo: "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/ahjj8did_image.png",
+  logo: "/kokowa-logo-navy.png",
 
   // Authentic founder photography (provided by the brand owner)
-  founderPortrait: "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/2ki1vzgp_image.%20%20%20foto%20.png",
+  founderPortrait: "/founder-portrait.png",
   founderRoastery: "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/4vamosvy_Scherm_afbeelding-2026-04-10-om-11.51.27.webp",
   founderPourOver: "https://customer-assets.emergentagent.com/job_coffee-architecture/artifacts/bt8m8gkr_Scherm%C2%ADafbeelding%202026-04-10%20om%2011.50.18.png",
 };

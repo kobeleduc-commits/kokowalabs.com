@@ -10,15 +10,15 @@ export default function Hero() {
           <div className="lg:col-span-7 relative z-10">
             <div className="kk-reveal kk-d-1 inline-flex items-center gap-3 font-mono-label" style={{ color: "var(--kk-mute)" }}>
               <span className="w-8 h-px" style={{ background: "var(--kk-mute)" }}></span>
-              The New Game of Coffee&trade;
+              Kokowa Labs
             </div>
 
             <h1
               data-testid="hero-headline"
-              className="kk-reveal kk-d-2 font-display mt-8 text-[44px] md:text-[68px] lg:text-[78px] leading-[0.98] font-medium"
+              className="kk-reveal kk-d-2 font-display mt-6 text-[56px] md:text-[84px] lg:text-[96px] leading-[0.93] font-medium"
               style={{ color: "var(--kk-ink)" }}
             >
-              Build a Profitable, <em className="not-italic" style={{ color: "var(--kk-copper)" }}>Differentiated</em> Coffee Business in 1/3 of the Time Without Costly Strategic Mistakes
+              Winning the New Game of Coffee&trade;
             </h1>
 
             <p
@@ -26,7 +26,7 @@ export default function Hero() {
               className="kk-reveal kk-d-3 mt-8 max-w-[560px] text-[17px] md:text-[19px] leading-[1.55]"
               style={{ color: "var(--kk-ink-soft)" }}
             >
-              Kokowa Labs helps serious coffee founders design positioning, structure, and commercial logic that works in today&rsquo;s market.
+              Build a profitable, <em className="not-italic font-semibold" style={{ color: "var(--kk-copper)" }}>differentiated</em> coffee business in 1/3 of the time, without costly strategic mistakes. Kokowa Labs helps serious founders design positioning, structure, and commercial logic that works in today&rsquo;s market.
             </p>
 
             <div className="kk-reveal kk-d-4 mt-12 flex flex-col sm:flex-row gap-4">

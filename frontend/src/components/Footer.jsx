@@ -12,7 +12,7 @@ export default function Footer() {
             <p className="mt-6 max-w-md opacity-70 leading-relaxed">
               Kokowa Labs designs positioning, structure, and commercial logic that works in today's market.
             </p>
-            <Link to="/apply" className="kk-btn kk-btn-light mt-10" data-testid="footer-apply-cta">
+            <Link to="/apply" className="kk-btn mt-10" data-testid="footer-apply-cta">
               Apply for Strategic Diagnostic
               <span aria-hidden>↗</span>
             </Link>

@@ -145,7 +145,7 @@ export default function CaseStudies() {
             <h2 className="font-display text-[40px] md:text-[64px] leading-[1] font-medium tracking-tight">
               Your situation deserves the same precision.
             </h2>
-            <Link to="/apply" className="kk-btn kk-btn-light mt-12" data-testid="case-studies-apply">
+            <Link to="/apply" className="kk-btn mt-12" data-testid="case-studies-apply">
               Apply for Strategic Diagnostic
               <span aria-hidden>↗</span>
             </Link>
