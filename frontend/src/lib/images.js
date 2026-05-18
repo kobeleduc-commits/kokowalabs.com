@@ -24,9 +24,9 @@ export const IMAGES = {
   roastery: ASSETS.founderRoastery,
   roasterySteel: ASSETS.founderRoastery,
 
-  // Sourcing / origin: niche specialty stock, hands sorting cherries
-  sourcing: "https://images.unsplash.com/photo-1611174743420-3d7df880ce32?auto=format&fit=crop&w=2000&q=80",
-  sourcingAlt: "https://images.unsplash.com/photo-1599639957043-f3aa5c986398?auto=format&fit=crop&w=2000&q=80",
+  // Sourcing / origin: coffee cherries on the plant at origin
+  sourcing: "https://images.unsplash.com/photo-1586095516671-d085ff58cdd4?auto=format&fit=crop&w=2000&q=80",
+  sourcingAlt: "https://images.unsplash.com/photo-1515694590185-73647ba02c10?auto=format&fit=crop&w=2000&q=80",
 
   // Strategic discussion / trust: authentic founder pour-over moment
   discussion: ASSETS.founderPourOver,
@@ -36,6 +36,6 @@ export const IMAGES = {
 
   // Cinematic backdrop frames
   beans: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=2000&q=80",
-  espresso: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=2000&q=80",
-  insightsHero: "https://images.unsplash.com/photo-1453614512568-c4024d13eb88?auto=format&fit=crop&w=2400&q=80",
+  espresso: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=2000&q=80",
+  insightsHero: "https://images.unsplash.com/photo-1529133396358-0f5f0c4a1c8a?auto=format&fit=crop&w=2400&q=80",
 };
