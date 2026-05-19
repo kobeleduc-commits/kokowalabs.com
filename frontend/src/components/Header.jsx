@@ -86,17 +86,17 @@ export default function Header() {
           onClick={() => setOpen(false)}
         >
           <img
-            src="/kokowa-logo-navy.png"
-            alt="Kokowa Labs, Strategic Coffee Consultancy"
-            className="h-[134px] md:h-44 lg:h-[196px] w-auto"
+            src=" /Logo_-removebg-preview.png"
+            alt="Kokowa Field Labs, Strategic Growth for Premium F&B"
+            className="h-24 md:h-32 lg:h-[140px] w-auto"
             style={{
               display: "block",
               objectFit: "contain",
               mixBlendMode: "multiply",
-              maxWidth: "min(78vw, 420px)",
+              maxWidth: "min(78vw, 360px)",
             }}
-            width="420"
-            height="140"
+            width="320"
+            height="88"
             loading="eager"
             decoding="async"
           />
@@ -184,6 +184,14 @@ export default function Header() {
           <span aria-hidden>↗</span>
         </a>
 
+        <div className="mt-10 pb-2">
+          <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>
+            The New Game of Coffee&trade;
+          </div>
+          <p className="mt-3 text-[14px] leading-relaxed" style={{ color: "var(--kk-ink-soft)" }}>
+            Strategic architecture for serious specialty coffee founders.
+          </p>
+        </div>
       </div>
     </header>
   );
