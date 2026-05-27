@@ -11,15 +11,22 @@ export default function ThankYou() {
           </h1>
           <div className="kk-divider mt-14 mb-14 max-w-md mx-auto" />
           <p className="text-[18px] leading-relaxed max-w-xl mx-auto" style={{ color: "var(--kk-ink-soft)" }}>
-            We review every application carefully.
+            Every application is reviewed carefully and personally.
             <br />
             If there is a strong fit, you will receive a personal invitation.
           </p>
-          <p className="mt-10 text-[14px]" style={{ color: "var(--kk-mute)" }}>
+          <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "var(--kk-mute)" }}>
+            Reviews typically take 2 to 3 business days.
+          </p>
+          <p className="mt-4 text-[13px]" style={{ color: "var(--kk-mute)" }}>
             All information is treated with strict confidentiality.
           </p>
 
-          <div className="mt-16">
+          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/case-studies" className="kk-btn" data-testid="thank-you-case-studies">
+              Read a Case Study
+              <span aria-hidden>↗</span>
+            </Link>
             <Link to="/" className="kk-btn kk-btn-ghost" data-testid="thank-you-home">
               Return to Kokowa Labs
             </Link>

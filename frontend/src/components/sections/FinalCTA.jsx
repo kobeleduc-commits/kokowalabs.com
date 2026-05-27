@@ -20,8 +20,8 @@ export default function FinalCTA() {
         <div className="max-w-3xl">
           <div className="font-mono-label" style={{ color: "var(--kk-gold)" }}>Apply</div>
           <h2 className="font-display mt-6 text-[48px] md:text-[80px] leading-[0.98] font-medium tracking-tight">
-            Bring real coffee ambition.<br />
-            <em className="not-italic" style={{ color: "var(--kk-gold)" }}>Get strategic architecture.</em>
+            Come with conviction.<br />
+            <em className="not-italic" style={{ color: "var(--kk-gold)" }}>Leave with architecture.</em>
           </h2>
           <p className="mt-8 max-w-xl opacity-80 text-[17px] leading-relaxed">
             If you are serious about building a coffee business that holds together under pressure, the next step is structured.

@@ -4,6 +4,10 @@ import axios from "axios";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Static fallback — shown when backend is cold or unavailable.
+// Reflects the actual monthly engagement cap without a live API dependency.
+const STATIC_SLOTS = 6;
+
 export default function Scarcity() {
   const [load, setLoad] = useState(null);
 
@@ -12,13 +16,13 @@ export default function Scarcity() {
     axios
       .get(`${API}/applications/intake-load`)
       .then((res) => { if (!cancelled) setLoad(res.data); })
-      .catch(() => {});
+      .catch(() => {}); // fail silently — static fallback always renders
     return () => { cancelled = true; };
   }, []);
 
   const inReview = load?.in_review_this_week ?? null;
   const remaining = load?.remaining_slots_this_month ?? null;
-  const monthly = load?.monthly_slots ?? null;
+  const monthly = load?.monthly_slots ?? STATIC_SLOTS;
 
   return (
     <section className="kk-section relative" style={{ background: "var(--kk-paper)" }} data-testid="section-scarcity">
@@ -27,7 +31,7 @@ export default function Scarcity() {
           <div className="lg:col-span-6">
             <div className="font-mono-label" style={{ color: "var(--kk-copper)" }}>Selective Access</div>
             <h2 className="font-display mt-5 text-[40px] md:text-[58px] leading-[1.02] font-medium tracking-tight">
-              We only work with a limited number of founders per month.
+              We work with a maximum of {STATIC_SLOTS} founders per month.
             </h2>
           </div>
 
@@ -36,8 +40,8 @@ export default function Scarcity() {
               Strategic time is the constrained resource. Quality of attention compounds when it is rationed. Every engagement is reviewed personally and matched to fit.
             </p>
 
-            {/* Live intake signal */}
-            {load && (
+            {/* Live intake signal — only shown when API responds */}
+            {inReview !== null && (
               <div
                 className="mt-10 inline-flex items-center gap-3 py-3 px-5"
                 style={{
@@ -71,7 +75,9 @@ export default function Scarcity() {
               <div className="border-t pt-4" style={{ borderColor: "var(--kk-ink)" }}>
                 <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Slots</div>
                 <div className="font-display text-[20px] md:text-[24px] mt-2 leading-tight">
-                  {remaining !== null && monthly !== null ? `${remaining} of ${monthly} left` : "Limited monthly"}
+                  {remaining !== null && monthly !== null
+                    ? `${remaining} of ${monthly} left`
+                    : `${STATIC_SLOTS} per month`}
                 </div>
               </div>
               <div className="border-t pt-4" style={{ borderColor: "var(--kk-ink)" }}>

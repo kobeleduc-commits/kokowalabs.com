@@ -38,7 +38,7 @@ const CASES = [
       "Hiring plan paused until the architecture absorbed the work first",
     ],
     outcome: [
-      "Average order value lifted notably within the first promotional cycle",
+      "Average order value increased materially within the first promotional cycle",
       "First gated long-form release oversubscribed against the modest list",
       "Two queued hires resequenced; one removed entirely",
     ],

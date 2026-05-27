@@ -26,16 +26,21 @@ export default function Hero() {
               className="kk-reveal kk-d-3 mt-8 max-w-[560px] text-[17px] md:text-[19px] leading-[1.55]"
               style={{ color: "var(--kk-ink-soft)" }}
             >
-              Build a profitable, <em className="not-italic font-semibold" style={{ color: "var(--kk-copper)" }}>differentiated</em> coffee business in 1/3 of the time, without costly strategic mistakes. Kokowa Labs helps serious founders design positioning, structure, and commercial logic that works in today&rsquo;s market.
+              Build a profitable, <em className="not-italic font-semibold" style={{ color: "var(--kk-copper)" }}>differentiated</em> coffee business without costly strategic detours. Kokowa Labs helps serious founders design positioning, structure, and commercial logic that holds in today&rsquo;s market.
             </p>
 
-            <div className="kk-reveal kk-d-4 mt-12 flex flex-col sm:flex-row gap-4">
+            <div className="kk-reveal kk-d-4 mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
               <Link to="/apply" className="kk-btn" data-testid="hero-primary-cta">
                 Apply for Strategic Diagnostic
                 <span aria-hidden>↗</span>
               </Link>
-              <a href="#how-it-works" className="kk-btn kk-btn-ghost" data-testid="hero-secondary-cta">
-                See How It Works
+              <a
+                href="#how-it-works"
+                className="link-underline text-[14px]"
+                style={{ color: "var(--kk-mute)" }}
+                data-testid="hero-secondary-cta"
+              >
+                See how it works
               </a>
             </div>
 

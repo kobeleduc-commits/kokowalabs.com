@@ -10,7 +10,7 @@ export default function InsightDetail() {
     if (post) {
       document.title = `${post.title} | Kokowa Labs`;
     }
-    return () => { document.title = "Kokowa Labs | Strategic Architecture for Specialty Coffee"; };
+    return () => { document.title = "Kokowa Labs | Strategic Coffee Consultancy for Serious Founders"; };
   }, [post]);
 
   if (!post) return <Navigate to="/insights" replace />;

@@ -23,12 +23,15 @@ db = client[os.environ["DB_NAME"]]
 
 app = FastAPI(title="Kokowa Labs API")
 
+_cors_origins_raw = os.environ.get("CORS_ORIGINS", "https://kokowalabs.com,https://www.kokowalabs.com")
+_cors_origins = [o.strip() for o in _cors_origins_raw.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins,
     allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PATCH", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 api_router = APIRouter(prefix="/api")

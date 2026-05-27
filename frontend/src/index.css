@@ -47,24 +47,23 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 145px;
+    scroll-padding-top: 88px;
     background: var(--kk-cream);
-    --header-height: 145px;
+    --header-height: 80px;
 }
 
 @media (max-width: 768px) {
-    html { --header-height: 130px; scroll-padding-top: 130px; }
+    html { --header-height: 72px; scroll-padding-top: 80px; }
 }
 
-/* Per spec: anchored sections must offset themselves so the sticky header
-   never covers their titles. */
-section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"] {
-    scroll-margin-top: 145px;
+/* Anchored sections offset so the sticky header never covers their titles. */
+section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"], div[id^="case-studies"] {
+    scroll-margin-top: 88px;
 }
 
 @media (max-width: 768px) {
-    section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"] {
-        scroll-margin-top: 130px;
+    section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"], div[id^="case-studies"] {
+        scroll-margin-top: 80px;
     }
 }
 
@@ -158,10 +157,10 @@ body {
     white-space: nowrap;
 }
 .kk-btn:hover {
-    background: var(--kk-magenta);
-    border-color: var(--kk-magenta);
+    background: var(--kk-copper-deep);
+    border-color: var(--kk-copper-deep);
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(192, 24, 106, 0.32);
+    box-shadow: 0 8px 28px rgba(140, 74, 42, 0.32);
 }
 .kk-btn-ghost {
     background: transparent;
@@ -307,7 +306,7 @@ html, body { overflow-x: hidden; }
    visible blurred background, full width, proper padding, no clipping. */
 .mobile-menu {
     position: fixed;
-    top: var(--header-height, 88px);
+    top: var(--header-height, 72px);
     left: 0;
     right: 0;
     bottom: 0;

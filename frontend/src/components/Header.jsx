@@ -5,6 +5,7 @@ import { ASSETS } from "@/lib/images";
 const NAV = [
   { to: "/approach", hash: "#approach", label: "Approach" },
   { to: "/work-with-us", hash: "#work-with-us", label: "Work With Us" },
+  { to: "/case-studies", hash: "#case-studies", label: "Case Studies" },
   { to: "/insights", hash: "#insights", label: "Insights" },
   { to: "/about", hash: "#about", label: "About" },
 ];
@@ -66,9 +67,7 @@ export default function Header() {
   return (
     <header
       data-testid="site-header"
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        "py-2 md:py-2"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 py-3`}
       style={{
         background: scrolled ? "rgba(242, 235, 223, 0.92)" : "rgba(242, 235, 223, 0.62)",
         borderBottom: scrolled ? "1px solid var(--kk-line)" : "1px solid transparent",
@@ -77,7 +76,6 @@ export default function Header() {
       }}
     >
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 flex items-center justify-between gap-4">
-        {/* LOGO  ̶ enlarged so "KOKOWA FIELD LABS" is fully legible */}
         <Link
           to="/"
           className="flex items-center group shrink-0"
@@ -86,17 +84,16 @@ export default function Header() {
           onClick={() => setOpen(false)}
         >
           <img
-            src="/kokowa-logo-navy.png"
-            alt="Kokowa Labs, Strategic Coffee Consultancy"
-            className="h-[134px] md:h-44 lg:h-[196px] w-auto"
+            src="/kokowa-field-labs-logo.png"
+            alt="Kokowa Field Labs"
+            className="h-12 md:h-14 w-auto"
             style={{
               display: "block",
               objectFit: "contain",
-              mixBlendMode: "multiply",
-              maxWidth: "min(78vw, 420px)",
+              maxWidth: "min(60vw, 280px)",
             }}
-            width="420"
-            height="140"
+            width="786"
+            height="318"
             loading="eager"
             decoding="async"
           />
