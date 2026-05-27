@@ -19,7 +19,6 @@ const COMMITMENTS = [
   "No. Just exploring at this stage.",
 ];
 const BUDGETS = [
-  "Below 5k",
   "5k to 15k",
   "15k to 40k",
   "40k+",
@@ -114,7 +113,7 @@ export default function Apply() {
             Apply for a Strategic Diagnostic.
           </h1>
           <p className="mt-6 max-w-xl text-[16px] leading-relaxed" style={{ color: "var(--kk-ink-soft)" }}>
-            Every application is reviewed personally. If there is a strong fit, you will receive a personal invitation.
+            Every application is reviewed personally by Kobe Leduc. If there is a strong fit, you will receive a personal invitation within 2 to 3 business days.
           </p>
         </div>
       </section>
@@ -123,7 +122,7 @@ export default function Apply() {
         <div className="max-w-[1100px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Sidebar steps */}
           <aside className="lg:col-span-4">
-            <div className="lg:sticky lg:top-32">
+            <div className="lg:sticky lg:top-[220px]">
               <div className="font-mono-label mb-6" style={{ color: "var(--kk-mute)" }}>
                 Step {step + 1} of {STEPS_META.length}
               </div>

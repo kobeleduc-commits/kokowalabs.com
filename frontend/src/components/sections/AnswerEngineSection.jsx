@@ -82,21 +82,7 @@ export default function AnswerEngineSection() {
         </div>
       </div>
 
-      {/* FAQPage structured data for Google AI Overviews and answer engines */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: QA.map((q) => ({
-              "@type": "Question",
-              name: q.q,
-              acceptedAnswer: { "@type": "Answer", text: q.a },
-            })),
-          }),
-        }}
-      />
+      {/* FAQPage structured data is in the static <head> of index.html for crawler visibility */}
     </section>
   );
 }

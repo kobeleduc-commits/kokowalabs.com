@@ -5,6 +5,7 @@ import { ASSETS } from "@/lib/images";
 const NAV = [
   { to: "/approach", hash: "#approach", label: "Approach" },
   { to: "/work-with-us", hash: "#work-with-us", label: "Work With Us" },
+  { to: "/case-studies", hash: "#case-studies", label: "Case Studies" },
   { to: "/insights", hash: "#insights", label: "Insights" },
   { to: "/about", hash: "#about", label: "About" },
 ];
