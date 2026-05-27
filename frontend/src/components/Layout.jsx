@@ -30,7 +30,7 @@ export default function Layout({ children }) {
     <div className="grain min-h-screen flex flex-col" style={{ background: "var(--kk-cream)" }}>
       <ScrollManager />
       <Header />
-      <main className="flex-1 pt-[72px] md:pt-[80px]" data-testid="main-content">
+      <main className="flex-1 pt-[80px] md:pt-[92px]" data-testid="main-content">
         {children}
       </main>
       <Footer />

@@ -86,11 +86,11 @@ export default function Header() {
           <img
             src="/kokowa-field-labs-logo.png"
             alt="Kokowa Field Labs"
-            className="h-12 md:h-14 w-auto"
+            className="h-14 md:h-[68px] w-auto"
             style={{
               display: "block",
               objectFit: "contain",
-              maxWidth: "min(60vw, 280px)",
+              maxWidth: "min(64vw, 320px)",
             }}
             width="786"
             height="318"

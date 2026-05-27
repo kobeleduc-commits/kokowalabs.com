@@ -47,23 +47,23 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 88px;
+    scroll-padding-top: 100px;
     background: var(--kk-cream);
-    --header-height: 80px;
+    --header-height: 92px;
 }
 
 @media (max-width: 768px) {
-    html { --header-height: 72px; scroll-padding-top: 80px; }
+    html { --header-height: 80px; scroll-padding-top: 88px; }
 }
 
 /* Anchored sections offset so the sticky header never covers their titles. */
 section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"], div[id^="case-studies"] {
-    scroll-margin-top: 88px;
+    scroll-margin-top: 100px;
 }
 
 @media (max-width: 768px) {
     section[id], div[id^="approach"], div[id^="work-with-us"], div[id^="insights"], div[id^="about"], div[id^="apply"], div[id^="case-studies"] {
-        scroll-margin-top: 80px;
+        scroll-margin-top: 88px;
     }
 }
 
