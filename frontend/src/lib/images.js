@@ -9,7 +9,7 @@
 
 export const ASSETS = {
   // Brand
-  logo: "/kokowa-logo-navy.png",
+  logo: "/kokowa-field-labs-logo.png",
 
   // Authentic founder photography
   founderPortrait: "/founder-portrait.png",
