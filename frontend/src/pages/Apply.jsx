@@ -122,7 +122,7 @@ export default function Apply() {
         <div className="max-w-[1100px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Sidebar steps */}
           <aside className="lg:col-span-4">
-            <div className="lg:sticky lg:top-[220px]">
+            <div className="lg:sticky lg:top-[96px]">
               <div className="font-mono-label mb-6" style={{ color: "var(--kk-mute)" }}>
                 Step {step + 1} of {STEPS_META.length}
               </div>
