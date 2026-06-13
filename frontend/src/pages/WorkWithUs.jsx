@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import OfferStack from "@/components/sections/OfferStack";
 import Process from "@/components/sections/Process";
 import Scarcity from "@/components/sections/Scarcity";
@@ -6,6 +7,13 @@ import FinalCTA from "@/components/sections/FinalCTA";
 export default function WorkWithUs() {
   return (
     <div data-testid="page-work-with-us">
+      <Helmet>
+        <title>Work With Us | Kokowa Labs</title>
+        <meta name="description" content="Three engagements, one filtered entry point. Strategic Diagnostic Intensive, Architecture Sprint, and ongoing Strategic Advisory for serious specialty coffee founders." />
+        <link rel="canonical" href="https://kokowalabs.com/work-with-us" />
+        <meta property="og:url" content="https://kokowalabs.com/work-with-us" />
+        <meta property="og:title" content="Work With Us | Kokowa Labs" />
+      </Helmet>
       <section className="pt-10 md:pt-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Work With Us</div>

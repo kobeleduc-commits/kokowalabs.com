@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { IMAGES } from "@/lib/images";
 
@@ -11,6 +12,13 @@ const PRINCIPLES = [
 export default function Approach() {
   return (
     <div data-testid="page-approach">
+      <Helmet>
+        <title>The Approach | Kokowa Labs</title>
+        <meta name="description" content="Strategic architecture for coffee businesses built to last. Four operating principles applied across positioning, sequencing, differentiation, and economics." />
+        <link rel="canonical" href="https://kokowalabs.com/approach" />
+        <meta property="og:url" content="https://kokowalabs.com/approach" />
+        <meta property="og:title" content="The Approach | Kokowa Labs" />
+      </Helmet>
       <section className="pt-10 md:pt-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>The Approach</div>

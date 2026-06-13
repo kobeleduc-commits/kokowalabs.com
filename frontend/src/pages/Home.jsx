@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import NewGame from "@/components/sections/NewGame";
@@ -12,6 +13,13 @@ import AboutPreview from "@/components/sections/AboutPreview";
 export default function Home() {
   return (
     <div data-testid="page-home">
+      <Helmet>
+        <title>Kokowa Labs | Strategic Coffee Consultancy for Serious Founders</title>
+        <meta name="description" content="Kokowa Labs helps serious coffee founders build profitable, differentiated coffee businesses through strategic positioning, commercial logic, and full value chain expertise from origin to crema." />
+        <link rel="canonical" href="https://kokowalabs.com/" />
+        <meta property="og:url" content="https://kokowalabs.com/" />
+        <meta property="og:title" content="Kokowa Labs | Strategic Coffee Consultancy for Serious Founders" />
+      </Helmet>
       <Hero />
       <Problem />
       <NewGame />

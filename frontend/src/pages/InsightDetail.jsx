@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { findInsight, INSIGHTS } from "@/lib/insights";
 
@@ -6,19 +6,23 @@ export default function InsightDetail() {
   const { slug } = useParams();
   const post = findInsight(slug);
 
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | Kokowa Labs`;
-    }
-    return () => { document.title = "Kokowa Labs | Strategic Coffee Consultancy for Serious Founders"; };
-  }, [post]);
-
   if (!post) return <Navigate to="/insights" replace />;
 
   const next = INSIGHTS[(INSIGHTS.findIndex((p) => p.slug === slug) + 1) % INSIGHTS.length];
+  const canonical = `https://kokowalabs.com/insights/${post.slug}`;
 
   return (
     <article data-testid="page-insight-detail">
+      <Helmet>
+        <title>{`${post.title} | Kokowa Labs`}</title>
+        <meta name="description" content={post.excerpt} />
+        <link rel="canonical" href={canonical} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:title" content={`${post.title} | Kokowa Labs`} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.cover} />
+      </Helmet>
+
       <section className="pt-6 md:pt-12">
         <div className="max-w-[900px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>

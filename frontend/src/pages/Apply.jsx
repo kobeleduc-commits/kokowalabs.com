@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -106,6 +107,13 @@ export default function Apply() {
 
   return (
     <div data-testid="page-apply">
+      <Helmet>
+        <title>Apply for Strategic Diagnostic | Kokowa Labs</title>
+        <meta name="description" content="Every engagement begins with a structured application. Reviewed personally by Kobe Leduc. Founders with strong fit receive a personal invitation within 2 to 3 business days." />
+        <link rel="canonical" href="https://kokowalabs.com/apply" />
+        <meta property="og:url" content="https://kokowalabs.com/apply" />
+        <meta property="og:title" content="Apply for Strategic Diagnostic | Kokowa Labs" />
+      </Helmet>
       <section className="pt-6 md:pt-12 pb-10">
         <div className="max-w-[1100px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Apply</div>

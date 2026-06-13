@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { IMAGES } from "@/lib/images";
@@ -25,6 +26,13 @@ export default function Insights() {
   };
   return (
     <div data-testid="page-insights">
+      <Helmet>
+        <title>Insights | Kokowa Labs</title>
+        <meta name="description" content="Field notes from inside specialty coffee. Selective, decision-grade writing for serious coffee founders on positioning, sequencing, margin architecture, and differentiation." />
+        <link rel="canonical" href="https://kokowalabs.com/insights" />
+        <meta property="og:url" content="https://kokowalabs.com/insights" />
+        <meta property="og:title" content="Insights | Kokowa Labs" />
+      </Helmet>
       <section className="pt-10 md:pt-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Insights</div>

@@ -1,5 +1,6 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import Approach from "@/pages/Approach";
@@ -26,23 +27,25 @@ function AdminShell() {
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/admin" element={<AdminShell />} />
-          <Route path="/" element={<MarketingShell><Home /></MarketingShell>} />
-          <Route path="/approach" element={<MarketingShell><Approach /></MarketingShell>} />
-          <Route path="/work-with-us" element={<MarketingShell><WorkWithUs /></MarketingShell>} />
-          <Route path="/insights" element={<MarketingShell><Insights /></MarketingShell>} />
-          <Route path="/insights/:slug" element={<MarketingShell><InsightDetail /></MarketingShell>} />
-          <Route path="/case-studies" element={<MarketingShell><CaseStudies /></MarketingShell>} />
-          <Route path="/about" element={<MarketingShell><About /></MarketingShell>} />
-          <Route path="/apply" element={<MarketingShell><Apply /></MarketingShell>} />
-          <Route path="/thank-you" element={<MarketingShell><ThankYou /></MarketingShell>} />
-          <Route path="*" element={<MarketingShell><Home /></MarketingShell>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <HelmetProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/admin" element={<AdminShell />} />
+            <Route path="/" element={<MarketingShell><Home /></MarketingShell>} />
+            <Route path="/approach" element={<MarketingShell><Approach /></MarketingShell>} />
+            <Route path="/work-with-us" element={<MarketingShell><WorkWithUs /></MarketingShell>} />
+            <Route path="/insights" element={<MarketingShell><Insights /></MarketingShell>} />
+            <Route path="/insights/:slug" element={<MarketingShell><InsightDetail /></MarketingShell>} />
+            <Route path="/case-studies" element={<MarketingShell><CaseStudies /></MarketingShell>} />
+            <Route path="/about" element={<MarketingShell><About /></MarketingShell>} />
+            <Route path="/apply" element={<MarketingShell><Apply /></MarketingShell>} />
+            <Route path="/thank-you" element={<MarketingShell><ThankYou /></MarketingShell>} />
+            <Route path="*" element={<MarketingShell><Home /></MarketingShell>} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </HelmetProvider>
   );
 }
 

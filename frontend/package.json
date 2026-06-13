@@ -7,6 +7,7 @@
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.5.1",
     "react-scripts": "5.0.1",
     "tailwindcss-animate": "^1.0.7"
@@ -14,7 +15,28 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "postbuild": "react-snap",
     "test": "craco test"
+  },
+  "reactSnap": {
+    "source": "build",
+    "minifyCss": false,
+    "minifyHtml": false,
+    "skipThirdPartyRequests": true,
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "include": [
+      "/",
+      "/approach",
+      "/work-with-us",
+      "/insights",
+      "/insights/quality-is-expected-strategy-is-rare",
+      "/insights/margin-architecture-where-coffee-businesses-break",
+      "/insights/the-right-move-at-the-wrong-moment",
+      "/insights/differentiation-is-not-a-tagline",
+      "/case-studies",
+      "/about",
+      "/apply"
+    ]
   },
   "browserslist": {
     "production": [
@@ -40,6 +62,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "globals": "15.15.0",
     "postcss": "^8.4.49",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^3.4.17"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { IMAGES } from "@/lib/images";
 
@@ -27,6 +28,13 @@ const TRACK_RECORD = [
 export default function About() {
   return (
     <div data-testid="page-about">
+      <Helmet>
+        <title>About Kobe Leduc | Kokowa Labs</title>
+        <meta name="description" content="Kokowa Labs is founded and led by Kobe Leduc. Fifteen plus years across the full specialty coffee value chain, from origin sourcing to roastery economics and retail architecture." />
+        <link rel="canonical" href="https://kokowalabs.com/about" />
+        <meta property="og:url" content="https://kokowalabs.com/about" />
+        <meta property="og:title" content="About Kobe Leduc | Kokowa Labs" />
+      </Helmet>
       <section className="pt-10 md:pt-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 order-2 lg:order-1">

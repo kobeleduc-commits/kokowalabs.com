@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { IMAGES } from "@/lib/images";
 
@@ -70,6 +71,13 @@ const CASES = [
 export default function CaseStudies() {
   return (
     <div data-testid="page-case-studies">
+      <Helmet>
+        <title>Case Studies | Kokowa Labs</title>
+        <meta name="description" content="How Kokowa Labs helped specialty coffee founders recover margins, restructure economics, and build businesses that hold under pressure. Selective engagements, real outcomes." />
+        <link rel="canonical" href="https://kokowalabs.com/case-studies" />
+        <meta property="og:url" content="https://kokowalabs.com/case-studies" />
+        <meta property="og:title" content="Case Studies | Kokowa Labs" />
+      </Helmet>
       <section className="pt-10 md:pt-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="font-mono-label" style={{ color: "var(--kk-mute)" }}>Case Studies</div>
