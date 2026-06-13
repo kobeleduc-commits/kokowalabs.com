@@ -141,7 +141,7 @@ export default function Insights() {
           </div>
           <div className="lg:col-span-5">
             <div className="kk-img-frame" style={{ aspectRatio: "4 / 3" }}>
-              <img src={IMAGES.insightsHero} alt="Coffee plantation landscape" loading="lazy" />
+              <img src={IMAGES.insightsHero} alt="Coffee plantation landscape" loading="lazy" width="800" height="600" />
             </div>
           </div>
         </div>

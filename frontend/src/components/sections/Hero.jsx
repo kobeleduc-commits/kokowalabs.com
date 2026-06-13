@@ -68,7 +68,7 @@ export default function Hero() {
                 boxShadow: "0 30px 80px -20px rgba(26, 20, 16, 0.35)",
               }}
             >
-              <img src={IMAGES.hero} alt="Pour-over coffee being prepared" loading="eager" />
+              <img src={IMAGES.hero} alt="Pour-over coffee being prepared" loading="eager" width="800" height="1000" />
             </div>
             <div
               className="hidden lg:flex absolute -bottom-8 -left-8 px-6 py-5 items-center gap-4"

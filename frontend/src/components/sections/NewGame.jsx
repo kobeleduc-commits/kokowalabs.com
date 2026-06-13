@@ -21,7 +21,7 @@ export default function NewGame() {
 
         <div className="lg:col-span-5 order-1 lg:order-2">
           <div className="kk-img-frame" style={{ aspectRatio: "5 / 6" }}>
-            <img src={IMAGES.roastery} alt="Specialty coffee roastery in operation" loading="lazy" />
+            <img src={IMAGES.roastery} alt="Specialty coffee roastery in operation" loading="lazy" width="800" height="960" />
           </div>
         </div>
       </div>

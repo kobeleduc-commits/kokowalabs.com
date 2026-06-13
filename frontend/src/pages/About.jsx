@@ -62,6 +62,8 @@ export default function About() {
                 src={IMAGES.founder}
                 alt="Portrait of Kobe Leduc, founder of Kokowa Labs"
                 loading="eager"
+                width="420"
+                height="420"
               />
             </div>
           </div>

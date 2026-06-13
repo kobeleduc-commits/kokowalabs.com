@@ -55,6 +55,8 @@ export default function AnswerEngineSection() {
               className="w-44"
               style={{ mixBlendMode: "multiply" }}
               loading="lazy"
+              width="176"
+              height="71"
             />
           </div>
         </div>

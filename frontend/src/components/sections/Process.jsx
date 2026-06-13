@@ -57,7 +57,7 @@ export default function Process() {
 
           <div className="lg:col-span-5 lg:sticky lg:top-32">
             <div className="kk-img-frame" style={{ aspectRatio: "4 / 5" }}>
-              <img src={IMAGES.sourcing} alt="Sourcing coffee at origin" loading="lazy" />
+              <img src={IMAGES.sourcing} alt="Sourcing coffee at origin" loading="lazy" width="800" height="1000" />
             </div>
           </div>
         </div>

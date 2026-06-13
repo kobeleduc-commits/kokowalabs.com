@@ -19,6 +19,8 @@ export default function AboutPreview() {
               src={IMAGES.founder}
               alt="Kobe Leduc, founder and lead architect of Kokowa Labs"
               loading="lazy"
+              width="360"
+              height="360"
             />
           </div>
         </div>

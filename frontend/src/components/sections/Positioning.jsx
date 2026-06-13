@@ -6,7 +6,7 @@ export default function Positioning() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6">
           <div className="kk-img-frame" style={{ aspectRatio: "4 / 5" }}>
-            <img src={IMAGES.discussion} alt="Strategic working session" loading="lazy" />
+            <img src={IMAGES.discussion} alt="Strategic working session" loading="lazy" width="800" height="1000" />
           </div>
         </div>
 

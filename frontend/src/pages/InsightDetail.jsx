@@ -40,7 +40,7 @@ export default function InsightDetail() {
       <section className="mt-16">
         <div className="max-w-[1100px] mx-auto px-6 md:px-10">
           <div className="kk-img-frame" style={{ aspectRatio: "16 / 9" }}>
-            <img src={post.cover} alt={post.title} loading="eager" />
+            <img src={post.cover} alt={post.title} loading="eager" width="1100" height="619" />
           </div>
         </div>
       </section>
