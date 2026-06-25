@@ -1,0 +1,23 @@
+name: Keep backend alive
+
+on:
+  schedule:
+    # Ping every 10 minutes. Render free tier sleeps after 15 min of inactivity.
+    - cron: "*/10 * * * *"
+  workflow_dispatch: # allow manual trigger from GitHub Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render backend
+        env:
+          # Set RENDER_BACKEND_URL in GitHub → Settings → Secrets and variables → Actions
+          # if your Render service URL is different from the default below.
+          BACKEND_URL: ${{ secrets.RENDER_BACKEND_URL || 'https://kokowa-labs-api.onrender.com' }}
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "${BACKEND_URL}/api/")
+          echo "Backend responded with HTTP $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Warning: backend returned $STATUS — may still be waking up."
+          fi

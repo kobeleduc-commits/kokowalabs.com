@@ -1,0 +1,27 @@
+# Render Infrastructure as Code for Kokowa Labs API
+# Render free tier hosts the FastAPI backend.
+# Visit https://dashboard.render.com/ -> New -> Blueprint -> point at this repo.
+
+services:
+  - type: web
+    name: kokowa-labs-api
+    env: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/
+    autoDeploy: true
+    envVars:
+      - key: MONGO_URL
+        sync: false  # set in Render dashboard, e.g. mongodb+srv://...mongodb.net/
+      - key: DB_NAME
+        sync: false  # e.g. kokowa_labs_prod
+      - key: CORS_ORIGINS
+        sync: false  # e.g. https://kokowalabs.vercel.app,https://kokowalabs.com
+      - key: ADMIN_TOKEN
+        sync: false  # rotate from the dev value
+      - key: MAKE_WEBHOOK_URL
+        sync: false  # optional Make.com inbound webhook
+      - key: PYTHON_VERSION
+        value: 3.11.9

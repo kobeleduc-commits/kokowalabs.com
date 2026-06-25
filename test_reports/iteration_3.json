@@ -1,0 +1,42 @@
+{
+  "summary": "Iteration 3 testing complete: CSV export, /api/applications/digest, /api/subscribers (POST+GET), /case-studies page, /insights Strategic Question + newsletter form, and /admin tabs (applications/subscribers/digest). 27/27 backend pytest tests pass (16 pre-existing + 11 new). All 14 frontend test points verified via Playwright on the public preview URL. One copy bug found and fixed: an em-dash on /insights that violated the strict 0-em-dash audit.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_kokowa_api.py",
+    "/app/backend/tests/test_kokowa_admin.py",
+    "/app/backend/tests/test_kokowa_iter3.py",
+    "/app/backend/tests/conftest.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "server.py: subscribers POST returns {ok:true} only — does not echo the email/id created. Acceptable for an idempotent upsert but a richer 200 body would help the UI confirm the persisted state without an extra GET.",
+    "server.py /api/applications/digest groups by_stage and by_urgency using raw values from documents — if a future rename of stage/urgency keys lands, the digest will silently bucket under empty string ''. Consider whitelisting expected values or rejecting unknown ones.",
+    "Insights.jsx: the strategic-question copy contained an em-dash (U+2014) that violated the strict no-em-dash rule. Fixed by replacing ' — ' with ', '. Recommend adding an automated CI check (grep for U+2014 in src/) to prevent regression.",
+    "Admin.jsx admin token is still passed in URL query string (?token=...) — same iteration-2 note carries forward. Consider POST + cookie or localStorage entry.",
+    "CSV export uses csv.QUOTE_ALL which is correct, but a Make/Zapier importer that auto-types booleans will treat the quoted 'pending_review' literally — fine, just worth noting in the Make scenario doc.",
+    "Subscribers source is taken from payload.source but no whitelist; any client can post arbitrary strings. Low risk for an internal-flag field; consider validating against a small set ('insights','site','footer')."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_kokowa_iter3.py",
+    "/app/frontend/src/pages/Insights.jsx"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "100%"
+  },
+  "test_credentials": "Admin token: kokowa-admin-2026 (from backend/.env ADMIN_TOKEN). Verified via 200 on /api/applications, /api/applications/export.csv, /api/applications/digest, /api/subscribers; 401 on missing/invalid token.",
+  "seed_data_creation": "Subscribers collection now has 3 entries: founder@example.com (insights, prior), test_iter3_subscriber@example.com (pytest), test_iter3_ui_1777215324@example.com (UI submission). All emails are stored lowercased per backend logic. Recommend periodic cleanup of TEST_-prefixed records.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Iteration 3 backend regression suite is /app/backend/tests/test_kokowa_iter3.py covering CSVExport (auth+content-type+content-disposition+QUOTE_ALL+exact header order), Digest (auth + hours boundary 0 and 720+ + key shape), Subscribers (POST 200 + idempotent upsert verified via GET length==1 + 422 on invalid email + 401 on GET without token + no _id leakage). Run all backend tests with `pytest /app/backend/tests/ -v --junitxml=/app/test_reports/pytest/pytest_results.xml`. Frontend Playwright covered: /insights Strategic Question block + newsletter POST → success message, /case-studies page+3 cases+Apply CTA, footer Case Studies link present, top-nav lock (4 items: Approach/Work With Us/Insights/About + Apply, NO Case Studies in nav), /admin 3 tabs visible + Export CSV button + admin-subscribers-count + Subscribers list shows new email + Digest panel with totals and by_status/by_urgency/Make endpoint snippet. Em-dash audit: 0 on /, /insights, /case-studies, /admin?token=... after the Insights.jsx fix.",
+  "rca_of_the_issue": "Bug: 1 em-dash (U+2014) leaked into /app/frontend/src/pages/Insights.jsx line 53 inside the Strategic Question block copy: 'in the form it takes today — could you answer them'. The strict iteration spec requires 0 em-dashes in any rendered text. Repro: GET /insights, run /\\u2014/g over document.body.innerText → returned 1. Fix: replaced ' — ' with ', '. Verified: post-fix em-dash count is 0 on /insights. Prevention: add CI grep `grep -rn $'\\u2014' frontend/src/` to block future regressions."
+}
